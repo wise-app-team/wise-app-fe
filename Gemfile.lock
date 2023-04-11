@@ -263,7 +263,6 @@ DEPENDENCIES
   capybara
   database_cleaner-active_record
   debug
-  factory_bot (~> 6.2)
   factory_bot_rails
   faker
   figaro

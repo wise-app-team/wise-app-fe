@@ -79,6 +79,3 @@ group :test do
 end
 
 gem 'figaro'
-
-
-gem "factory_bot", "~> 6.2"
