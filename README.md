@@ -95,6 +95,8 @@ Stretch goals include adding a social aspect to help users find events in their 
 
 This is the front end repo, the back end repo is located [here](https://github.com/wise-app-team/wise-app-be)
 
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -299,3 +301,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 [Rails]: https://img.shields.io/badge/-Ruby%20on%20Rails-CC0000?logo=ruby-on-rails&logoColor=white&style=for-the-badge
 [Rails-url]: https://rubyonrails.org 
+
+[Circle-CI]: https://img.shields.io/circleci/build/github/wise-app-team/wise-app-fe/main
+[Circle-url]: https://app.circleci.com/
