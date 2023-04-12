@@ -72,8 +72,8 @@ group :test do
   gem 'launchy'
   gem 'orderly'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'webmock'
 	gem 'database_cleaner-active_record'
 end
