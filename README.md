@@ -85,7 +85,15 @@
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` 
 
+Wise App is a web app seeking to solve a modern problem with a modern solution. As of 2019, Americans aged 65 or older take an average of four medications [^1]. Between insurance, specialties, and provider availability, not all medications are managed by the same providers, and that's where Wise App comes in.
 
+We are seeking to create an app that will allow a user to input their medications, track doses, and find out if there are interactions between the medications they have added. 
+
+Stretch goals include adding a social aspect to help users find events in their local area.
+
+[^1](https://www.kff.org/health-reform/issue-brief/data-note-prescription-drugs-and-older-adults/) 
+
+This is the front end repo, the back end repo is located [here](https://github.com/wise-app-team/wise-app-be)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,6 +102,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 * [![Rails]][Rails-url]
+* [![Circle-CI]][Circle-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
