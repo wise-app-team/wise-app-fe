@@ -197,9 +197,45 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/114712752?v=4" alt="Profile" width="80" height="80">
+  <p align="center">
+    Kassandra Leyba<br>
+    <a href="https://github.com/kassandraleyba">Github: https://github.com/kassandraleyba</a>
+  </p>
+</div>
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/117024855?v=4" alt="Profile" width="80" height="80">
+  <p align="center">
+    Bradley Dunlap<br>
+    <a href="https://github.com/brad-dunlap">Github: brad-dunlap</a>
+  </p>
+</div>
+
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/112577589?v=4" alt="Profile" width="80" height="80">
+  <p align="center">
+    Meredith Trevino<br>
+    <a href="https://github.com/MATrevino">Github: MATrevino</a>
+  </p>
+</div>
+
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/108768349?v=4" alt="Profile" width="80" height="80">
+  <p align="center">
+    Max MacGillivray<br>
+    <a href="https://github.com/MoxieMax">Github: MoxieMax</a>
+  </p>
+</div>
+
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/17149928?v=4" alt="Profile" width="80" height="80">
+  <p align="center">
+    Isaac Alter<br>
+    <a href="https://github.com/Isaac3924">Github: Isaac3924</a>
+  </p>
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
