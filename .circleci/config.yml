@@ -28,10 +28,9 @@ jobs:
       - checkout
       - run: bundle install --path vendor/bundle
       - run: bundle exec rspec
-      - deploy:
-          requires:
-            - build_and_test # only deploy if the build_and_test job has completed
-          filters:
-            branches:
-              only: main # only deploy when on main
-              run: git push heroku main
+  deploy:
+    steps:
+      - checkout
+      - run:
+          name: Deploy Main to Heroku
+          command: git push https://git.heroku.com/stormy-sea-95057.git main
