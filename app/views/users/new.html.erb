@@ -1,0 +1,45 @@
+<h3>Create Account below to get started!</h3>
+
+<%= form_with url: "/users", method: :post, local: :true do |form|%>
+  <%= form.label :name%>
+  <%= form.text_field :name %>
+  <br>
+  <%= form.label :email%>
+  <%= form.text_field :email %>
+  <br>
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+  <br>
+  <%=form.label :password_confirmation %>
+  <%=form.password_field :password_confirmation %>
+  <br>
+  <%= form.label :phone_number %>
+  <%= form.telephone_field :phone_number%>
+  <br>
+  <%= form.label :birthday %>
+  <%= form.date_field :birthday %>
+  <br>
+<div class='address'>
+    <%=form.fields_for :address do |a| %>
+        <div class="street">
+            <label>Street address </label>
+            <%= a.text_field :street_address, id: :street_address %>
+        </div>
+        <div class="city">
+            <label>City </label>
+            <%= a.text_field :city, id: :city %>
+        </div>
+        <div class="state">
+            <label>State </label>
+            <%=a .text_field :state, id: :state %>
+        </div>
+
+        <div class="zip_code">
+            <label>Zip </label>
+            <%= a.number_field :zip_code, id: :zip_code %>
+        </div>
+</div>
+<%end%>  
+  <br>
+  <%= form.submit "Submit"%>
+<%end%>
