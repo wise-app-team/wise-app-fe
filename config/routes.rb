@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/', to: 'landing#index'
   get '/dashboard', to: 'users#show'
+  get "/auth/:provider/callback", to: 'sessions#create' 
+      #(:provider functions as a placeholder in case we implement another one)
   resources :users, only: [:new, :create]
 
   namespace :api do
