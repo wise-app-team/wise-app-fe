@@ -12,7 +12,8 @@ RSpec.describe 'New User' do
         expect(current_path).to eq('/users/new')
         expect(page).to have_content('Welcome to WiseApp')
         expect(page).to have_content("Create Account below to get started!")
-        expect(page).to have_field(:name)
+        expect(page).to have_field(:first_name)
+        expect(page).to have_field(:last_name)
         expect(page).to have_field(:email)
         expect(page).to have_field(:password)
         expect(page).to have_field(:password_confirmation)
@@ -32,7 +33,19 @@ RSpec.describe 'New User' do
         it 'I am redirected to my dashboard and see a flash message that I am logged in' do
           visit '/users/new'
 
-          fill_in :name, with: 'Pedro Pascal'
+          stub_request(:post, "http://localhost:3000/api/v1/users").
+          with(
+            body: {"birthday"=>"04/05/1975", "email"=>"Pedro@pedro.com", "first_name"=>"Pedro", "last_name"=>"Pascal", "password"=>"password123", "password_confirmation"=>"password123", "phone_number"=>"555-555-5555"},
+            headers: {
+           'Accept'=>'*/*',
+           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+           'Content-Type'=>'application/x-www-form-urlencoded',
+           'User-Agent'=>'Faraday v2.7.4'
+            }).
+          to_return(status: 200, body: "", headers: {})
+
+          fill_in :first_name, with: 'Pedro'
+          fill_in :last_name, with: 'Pascal'
           fill_in :email, with: 'Pedro@pedro.com'
           fill_in :password, with: 'password123'
           fill_in :password_confirmation, with: 'password123'
@@ -46,7 +59,6 @@ RSpec.describe 'New User' do
           click_on 'Submit'
 
           expect(current_path).to eq('/dashboard')
-          expect(page).to have_content('Welcome, Pedro Pascal!')
         end
       end
 
@@ -54,9 +66,23 @@ RSpec.describe 'New User' do
         it 'I am returned to the form and see a flash message indicating which field(s) I am missing' do
           visit '/users/new'
 
-          fill_in :name, with: 'Quentin Tarantino'
+          stub_request(:post, "http://localhost:3000/api/v1/users").
+          with(
+            body: {"birthday"=>"", "email"=>"", "first_name"=>"Quentin", "last_name"=>"Tarantino", "password"=>"", "password_confirmation"=>"", "phone_number"=>""},
+            headers: {
+           'Accept'=>'*/*',
+           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+           'Content-Type'=>'application/x-www-form-urlencoded',
+           'User-Agent'=>'Faraday v2.7.4'
+            }).
+          to_return(status: 400, body: "", headers: {})
+
+          fill_in :first_name, with: 'Quentin'
+          fill_in :last_name, with: 'Tarantino'
 
           click_on "Submit"
+          expect(current_path).to eq('/users/new')
+          expect(page).to have_content("Could not save user")
         end
       end
     end

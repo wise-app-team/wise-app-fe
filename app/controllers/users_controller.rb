@@ -4,14 +4,22 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
-      flash[:notice] = "Welcome, #{user.name}!"
-      redirect_to '/dashboard'
+    response = BackendService.new.save_user(user_params)
+    
+    if response.status == 200
+      # User saved successfully on the backend
+      redirect_to dashboard_path
     else
-      flash[:alert] = user.errors.full_messages.to_sentence
-      redirect_to '/users/new'
+      # There was an error saving the user on the backend
+      flash[:error] = "Could not save user"
+      redirect_to new_user_path
     end
+  end
+
+
+  private
+  
+  def user_params
+    params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :birthday, :phone_number, :street_address, :city, :state, :zip_code)
   end
 end

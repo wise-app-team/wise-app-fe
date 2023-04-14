@@ -1,0 +1,87 @@
+{
+  "drugGroup": {
+      "name": null,
+      "conceptGroup": [
+          {
+              "tty": "BPCK"
+          },
+          {
+              "tty": "SBD",
+              "conceptProperties": [
+                  {
+                      "rxcui": "1243440",
+                      "name": "8 HR acetaminophen 650 MG Extended Release Oral Tablet [Tylenol]",
+                      "synonym": "Tylenol 650 MG 8 HR Extended Release Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "1738139",
+                      "name": "acetaminophen 325 MG Oral Capsule [Tylenol]",
+                      "synonym": "Tylenol 325 MG Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "209387",
+                      "name": "acetaminophen 325 MG Oral Tablet [Tylenol]",
+                      "synonym": "Tylenol 325 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "209459",
+                      "name": "acetaminophen 500 MG Oral Tablet [Tylenol]",
+                      "synonym": "Tylenol 500 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "2178758",
+                      "name": "acetaminophen 160 MG Oral Powder [Tylenol]",
+                      "synonym": "Tylenol 160 MG Oral Powder",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "2374361",
+                      "name": "acetaminophen 500 MG Oral Powder [Tylenol]",
+                      "synonym": "Tylenol 500 MG Oral Powder",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "828555",
+                      "name": "acetaminophen 32 MG/ML Oral Suspension [Tylenol]",
+                      "synonym": "Tylenol 32 MG/ML Oral Suspension",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "828557",
+                      "name": "acetaminophen 160 MG Chewable Tablet [Tylenol]",
+                      "synonym": "Tylenol 160 MG Chewable Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  }
+              ]
+          }
+      ]
+  }
+}

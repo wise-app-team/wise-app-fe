@@ -1,0 +1,132 @@
+{
+  "drugGroup": {
+      "name": null,
+      "conceptGroup": [
+          {
+              "tty": "BPCK"
+          },
+          {
+              "tty": "SBD",
+              "conceptProperties": [
+                  {
+                      "rxcui": "1009147",
+                      "name": "amphetamine aspartate 1.875 MG / amphetamine sulfate 1.875 MG / dextroamphetamine saccharate 1.875 MG / dextroamphetamine sulfate 1.875 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 7.5 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "541365",
+                      "name": "amphetamine aspartate 7.5 MG / amphetamine sulfate 7.5 MG / dextroamphetamine saccharate 7.5 MG / dextroamphetamine sulfate 7.5 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 30 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "541879",
+                      "name": "amphetamine aspartate 1.25 MG / amphetamine sulfate 1.25 MG / dextroamphetamine saccharate 1.25 MG / dextroamphetamine sulfate 1.25 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 5 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "541894",
+                      "name": "amphetamine aspartate 2.5 MG / amphetamine sulfate 2.5 MG / dextroamphetamine saccharate 2.5 MG / dextroamphetamine sulfate 2.5 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 10 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "577960",
+                      "name": "amphetamine aspartate 3.75 MG / amphetamine sulfate 3.75 MG / dextroamphetamine saccharate 3.75 MG / dextroamphetamine sulfate 3.75 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 15 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "577962",
+                      "name": "amphetamine aspartate 5 MG / amphetamine sulfate 5 MG / dextroamphetamine saccharate 5 MG / dextroamphetamine sulfate 5 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 20 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "687045",
+                      "name": "amphetamine aspartate 3.125 MG / amphetamine sulfate 3.125 MG / dextroamphetamine saccharate 3.125 MG / dextroamphetamine sulfate 3.125 MG Oral Tablet [Adderall]",
+                      "synonym": "Adderall 12.5 MG Oral Tablet",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "861222",
+                      "name": "24 HR amphetamine aspartate 2.5 MG / amphetamine sulfate 2.5 MG / dextroamphetamine saccharate 2.5 MG / dextroamphetamine sulfate 2.5 MG Extended Release Oral Capsule [Adderall]",
+                      "synonym": "Adderall XR 10 MG 24 HR Extended Release Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "861224",
+                      "name": "24 HR amphetamine aspartate 3.75 MG / amphetamine sulfate 3.75 MG / dextroamphetamine saccharate 3.75 MG / dextroamphetamine sulfate 3.75 MG Extended Release Oral Capsule [Adderall]",
+                      "synonym": "Adderall XR 15 MG 24 HR Extended Release Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "861226",
+                      "name": "24 HR amphetamine aspartate 5 MG / amphetamine sulfate 5 MG / dextroamphetamine saccharate 5 MG / dextroamphetamine sulfate 5 MG Extended Release Oral Capsule [Adderall]",
+                      "synonym": "Adderall XR 20 MG 24 HR Extended Release Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "861228",
+                      "name": "24 HR amphetamine aspartate 6.25 MG / amphetamine sulfate 6.25 MG / dextroamphetamine saccharate 6.25 MG / dextroamphetamine sulfate 6.25 MG Extended Release Oral Capsule [Adderall]",
+                      "synonym": "Adderall XR 25 MG 24 HR Extended Release Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "861233",
+                      "name": "24 HR amphetamine aspartate 7.5 MG / amphetamine sulfate 7.5 MG / dextroamphetamine saccharate 7.5 MG / dextroamphetamine sulfate 7.5 MG Extended Release Oral Capsule [Adderall]",
+                      "synonym": "Adderall XR 30 MG 24 HR Extended Release Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  },
+                  {
+                      "rxcui": "861238",
+                      "name": "24 HR amphetamine aspartate 1.25 MG / amphetamine sulfate 1.25 MG / dextroamphetamine saccharate 1.25 MG / dextroamphetamine sulfate 1.25 MG Extended Release Oral Capsule [Adderall]",
+                      "synonym": "Adderall XR 5 MG 24 HR Extended Release Oral Capsule",
+                      "tty": "SBD",
+                      "language": "ENG",
+                      "suppress": "N",
+                      "umlscui": ""
+                  }
+              ]
+          }
+      ]
+  }
+}
