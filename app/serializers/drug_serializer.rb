@@ -1,5 +1,5 @@
 class DrugSerializer
-  # include JSONAPI::Serializer
+  include JSONAPI::Serializer
   attributes :name, :synonym
 
   def self.format_drugs(drugs)
