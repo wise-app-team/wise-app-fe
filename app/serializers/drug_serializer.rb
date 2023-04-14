@@ -1,5 +1,11 @@
+#from internet: 
 # class DrugSerializer
-#   include JSONAPI::Serializer
+#   include FastJsonapi::ObjectSerializer
+#   attributes :name, :description, :created_at, :updated_at
+# end
+
+# class DrugSerializer
+
 #   attributes :name, :synonym
 
 #   def self.format_drugs(drugs)
