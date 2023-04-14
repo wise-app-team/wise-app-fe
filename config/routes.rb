@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   get '/', to: 'landing#index'
   get '/dashboard', to: 'users#show'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:show, :new, :create] do 
+    resources :medical, only: [:index]
+  end
 
   namespace :api do
     namespace :v1 do
