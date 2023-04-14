@@ -7,7 +7,7 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    working_directory: ~/WiseAppFE
+    working_directory: ~/WiseAppFE 
     docker:
       - image: cimg/ruby:3.1.1
         environment:
