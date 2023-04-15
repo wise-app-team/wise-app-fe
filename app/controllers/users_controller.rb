@@ -15,6 +15,10 @@ class UsersController < ApplicationController
       redirect_to new_user_path
     end
   end
+  
+  def show
+    @user = User.find(session[:user_id])
+  end
 
 
   private
