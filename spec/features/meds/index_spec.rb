@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Medical Index Page' do
-  describe "As a visitor, when I visit /users/user_id/medical" do
+  describe "As a visitor, when I visit /users/user_id/meds" do
     before do
-      visit '/users/1/medical'
+      visit '/users/1/meds'
 
-      stub_request(:get, "http://localhost:3000/api/v1/users/1/medical").with(
+      stub_request(:get, "http://localhost:3000/api/v1/users/1/meds").with(
         headers: {
           'Accept'=>'*/*',
           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -27,7 +27,7 @@ RSpec.describe 'Medical Index Page' do
       fill_in :search, with: "Tylenol"
       click_on "Submit"
 
-      expect(current_path).to eq("/users/1/medical")
+      expect(current_path).to eq("/users/1/meds")
     end
 
     it "I see a list of all medications I am currently taking" do

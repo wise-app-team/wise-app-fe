@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/', to: 'landing#index'
 
   resources :users, only: [:show, :new, :create] do 
-    resources :medical, only: [:index] do
+    resources :meds, only: [:index] do
       resources :search, only: [:index]
     end
   end
