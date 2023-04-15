@@ -12,4 +12,21 @@ class BackendService
       req.body = user_params
     end
   end
+  
+  def register_user
+    
+  end
+  
+  # def self.user_create_or_find(params)
+  #   if params.length > 3
+  #     connection.post('/api/v1/users') do |req|
+  #       req.body = {user: params}
+  #     end
+  #   else
+  #     connection.get("/api/v1/users/#{params[:ID]}") do |req|
+  #       req.headers = params
+  #     end
+  #   end
+  # end
+    
 end
