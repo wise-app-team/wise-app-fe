@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/', to: 'landing#index'
-  get '/dashboard', to: 'users#show'
+
   resources :users, only: [:show, :new, :create] do 
     resources :medical, only: [:index] do
       resources :search, only: [:index]
@@ -15,8 +15,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/drugs/find_all', to: 'drugs/search#find_all'
-      resources :users, only: [:create]
-
+      resources :users, only: [:show, :create]
     end
   end
 end

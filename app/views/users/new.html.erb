@@ -1,6 +1,6 @@
 <h3>Create Account below to get started!</h3>
 
-<%= form_with url: "/users", method: :post, local: :true do |form|%>
+<%= form_with url: '/users', method: :post, local: :true do |form|%>
   <p><%= form.label :first_name%>
   <%= form.text_field :first_name %></p>
 
@@ -17,7 +17,7 @@
   <%=form.password_field :password_confirmation %></p>
 
   <p><%= form.label :phone_number %>
-  <%= form.telephone_field :phone_number%></p>
+  <%= form.telephone_field :phone_number %></p>
 
   <p><%= form.label :birthday %>
   <%= form.date_field :birthday %></p>
@@ -43,6 +43,6 @@
         </div>
 </div>
 <%end%>  
-  <br>
-  <%= form.submit "Submit"%>
+
+  <p><%= form.submit "Submit"%></p>
 <%end%>
