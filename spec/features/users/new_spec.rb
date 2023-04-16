@@ -33,16 +33,17 @@ RSpec.describe 'New User' do
         it 'I am redirected to my dashboard and see a flash message that I am logged in' do
           visit '/users/new'
 
+          user_info = "{\"data\":{\"id\":\"1\",\"type\":\"user\"}}"
+
           stub_request(:post, "http://localhost:3000/api/v1/users").
-          with(
-            body: {"birthday"=>"04/05/1975", "email"=>"Pedro@pedro.com", "first_name"=>"Pedro", "last_name"=>"Pascal", "password"=>"password123", "password_confirmation"=>"password123", "phone_number"=>"555-555-5555"},
-            headers: {
-           'Accept'=>'*/*',
-           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-           'Content-Type'=>'application/x-www-form-urlencoded',
-           'User-Agent'=>'Faraday v2.7.4'
-            }).
-          to_return(status: 200, body: "", headers: {})
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Content-Length'=>'0',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 201, body: user_info, headers: {})
 
           fill_in :first_name, with: 'Pedro'
           fill_in :last_name, with: 'Pascal'
@@ -58,7 +59,7 @@ RSpec.describe 'New User' do
 
           click_on 'Submit'
 
-          expect(current_path).to eq('/dashboard')
+          expect(current_path).to eq("/users/1")
         end
       end
 
@@ -68,21 +69,31 @@ RSpec.describe 'New User' do
 
           stub_request(:post, "http://localhost:3000/api/v1/users").
           with(
-            body: {"birthday"=>"", "email"=>"", "first_name"=>"Quentin", "last_name"=>"Tarantino", "password"=>"", "password_confirmation"=>"", "phone_number"=>""},
             headers: {
            'Accept'=>'*/*',
            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-           'Content-Type'=>'application/x-www-form-urlencoded',
+           'Content-Length'=>'0',
            'User-Agent'=>'Faraday v2.7.4'
             }).
-          to_return(status: 400, body: "", headers: {})
+          to_return(status: 422, body: "", headers: {})
 
           fill_in :first_name, with: 'Quentin'
           fill_in :last_name, with: 'Tarantino'
+          fill_in :email, with: ''
+          fill_in :password, with: ''
+          fill_in :password_confirmation, with: ''
+          fill_in :birthday, with: ''
+          fill_in :phone_number, with: ''
+          fill_in :street_address, with: ''
+          fill_in :city, with: ''
+          fill_in :state, with: ''
+          fill_in :zip_code, with: ''
 
           click_on "Submit"
+    
+          expect(have_status(422)).to be_present
+          expect({:flash=>{:error=>"User not created"}}).to be_present
           expect(current_path).to eq('/users/new')
-          expect(page).to have_content("Could not save user")
         end
       end
     end
