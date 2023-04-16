@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   get '/', to: 'landing#index'
 
-  resources :users, only: [:show, :new, :create] do 
+  post "/users/new", to: "users#create"
+  
+  resources :users, only: [:show, :new] do 
     resources :meds, only: [:index] do
       resources :search, only: [:index]
     end

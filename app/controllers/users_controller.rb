@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # response = BackendService.new.save_user(user_params)
- 
     user_attributes = {
       name: params[:name],
       email: params[:email],
@@ -24,28 +22,15 @@ class UsersController < ApplicationController
     }
 
     response = BackendService.new.save_user(user_attributes)
-
+    # binding.pry
     if response.status == 201
       user_id = JSON.parse(response.body, symbolize_names: true)
-      # binding.pry
       redirect_to user_path(user_id[:data][:id].to_i)
     else
-      flash[:error] = "Could not save user"
-      # redirect_to new_user_path
-      render :new
+      flash[:error] = "User not created"
+      render :new, status: 422
+      # redirect_to new_user_path, status: 422
     end
-        # handle the response as needed
-
-    # @user = User.new(user_params)
-
-    # if @user.save_to_db
-    #   # User saved successfully on the backend
-    # else
-    #   # There was an error saving the user on the backend
-    #   flash[:error] = "Could not save user"
-    #   # redirect_to new_user_path
-    #   render :new
-    # end
   end
 
 
