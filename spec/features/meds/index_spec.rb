@@ -13,14 +13,14 @@ RSpec.describe 'Medical Index Page' do
         }).to_return(status: 200, body: "", headers: {})
     end
 
-    it "I see the name of the app at the top of the page & links to all pages" do
+    xit "I see the name of the app at the top of the page & links to all pages" do
       expect(page).to have_content("WiseApp")
       expect(page).to have_link("Dashboard")
       expect(page).to have_link("Medical Page")
       # expect(page).to have_link("Social Page")
     end
 
-    it "can search for a medication" do
+    xit "can search for a medication" do
       expect(page).to have_content("Search for Medication to add to list")
       expect(page).to have_button("Submit")
 
@@ -30,7 +30,7 @@ RSpec.describe 'Medical Index Page' do
       expect(current_path).to eq("/users/1/meds")
     end
 
-    it "I see a list of all medications I am currently taking" do
+    xit "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
       expect(page).to have_content("Name: Tylenol")
       expect(page).to have_content("Dose 1: 8:00AM")

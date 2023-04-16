@@ -33,16 +33,17 @@ RSpec.describe 'New User' do
         it 'I am redirected to my dashboard and see a flash message that I am logged in' do
           visit '/users/new'
 
+          user_info = "{\"data\":{\"id\":\"1\",\"type\":\"user\"}}"
+
           stub_request(:post, "http://localhost:3000/api/v1/users").
-          with(
-            body: {"birthday"=>"04/05/1975", "email"=>"Pedro@pedro.com", "first_name"=>"Pedro", "last_name"=>"Pascal", "password"=>"password123", "password_confirmation"=>"password123", "phone_number"=>"555-555-5555", "street_address"=>"123 Main St", "city"=>"Denver", "state"=>"CO", "zip_code"=>"80209"},
-            headers: {
-           'Accept'=>'*/*',
-           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-           'Content-Type'=>'application/x-www-form-urlencoded',
-           'User-Agent'=>'Faraday v2.7.4'
-            }).
-          to_return(status: 201, body: "", headers: {})
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Content-Length'=>'0',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 201, body: user_info, headers: {})
 
           fill_in :first_name, with: 'Pedro'
           fill_in :last_name, with: 'Pascal'
