@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
-      birthday: Date.parse(params[:birthday]),
+      birthday: params[:birthday],
       phone_number: params[:phone_number],
       street_address: params[:street_address],
       city: params[:city],

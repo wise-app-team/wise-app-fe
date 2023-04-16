@@ -76,14 +76,15 @@ RSpec.describe 'New User' do
            'Content-Type'=>'application/x-www-form-urlencoded',
            'User-Agent'=>'Faraday v2.7.4'
             }).
-          to_return(status: 400, body: "", headers: {})
+          to_return(status: 400, body: "Error: User not created", headers: {})
 
           fill_in :first_name, with: 'Quentin'
           fill_in :last_name, with: 'Tarantino'
 
           click_on "Submit"
+          
           expect(current_path).to eq('/users/new')
-          expect(page).to have_content("Could not save user")
+          expect(response.body).to match(/ERROR: User not created/)
         end
       end
     end

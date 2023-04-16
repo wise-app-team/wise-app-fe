@@ -17,7 +17,6 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_content("WiseApp")
       expect(page).to have_link("Dashboard")
       expect(page).to have_link("Medical Page")
-      # expect(page).to have_link("Social Page")
     end
 
     xit "can search for a medication" do
