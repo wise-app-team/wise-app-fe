@@ -19,12 +19,11 @@ RSpec.describe 'New User' do
         expect(page).to have_field(:password_confirmation)
         expect(page).to have_field(:birthday)
         expect(page).to have_field(:phone_number)
-        within '.address' do
-          expect(page).to have_field(:street_address)
-          expect(page).to have_field(:city)
-          expect(page).to have_field(:state)
-          expect(page).to have_field(:zip_code)
-        end
+       
+				expect(page).to have_field(:street_address)
+				expect(page).to have_field(:city)
+				expect(page).to have_field(:state)
+				expect(page).to have_field(:zip_code)
       end
       # it 'the form should also have fields for primary contact, including phone, email and name and secondary contact' do
       #   #skipping for now

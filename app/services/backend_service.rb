@@ -7,7 +7,9 @@ class BackendService
   end
 
   def save_user(user_params)
-    response = conn.post('/api/v1/users')
+    response = conn.post('/api/v1/users') do |req|
+			req.body = user_params
+		end
   end
 
   # def show_user(user)
@@ -18,10 +20,7 @@ class BackendService
     response = conn.get("/api/v1/users/#{user_id}/meds")
     JSON.parse(response.body, symbolize_names: true)
   end
-  
-  def register_user
-    
-  end
+ 
   
   def user_create_by_oauth(auth_hash)
     response = conn.post("/api/v1/users") do |req|
@@ -30,13 +29,12 @@ class BackendService
         {
           name: auth_hash[:info][:name],
           email: auth_hash[:info][:email],
-          token: auth_hash[:credentials][:token]
+          token: auth_hash[:credentials][:token],
+					provider: auth_hash[:provider]
           # password_confirmation: auth_hash[:credentials][:token]
         }
       }
-      binding.pry
     end
-  # binding.pry
   end
   
   # def user_create_or_find(params)

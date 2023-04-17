@@ -8,7 +8,6 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.email = auth.info.email
       user.token = auth.credentials.token
-      binding.pry
     end
   end
 end
