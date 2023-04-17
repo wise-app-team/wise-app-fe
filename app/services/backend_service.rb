@@ -22,4 +22,33 @@ class BackendService
   def register_user
     
   end
+  
+  def user_create_by_oauth(auth_hash)
+    response = conn.post("/api/v1/users") do |req|
+      req.body = {
+        user: 
+        {
+          name: auth_hash[:info][:name],
+          email: auth_hash[:info][:email],
+          password: auth_hash[:credentials][:token],
+          password_confirmation: auth_hash[:credentials][:token]
+        }
+      }
+      binding.pry
+    end
+  # binding.pry
+  end
+  
+  # def user_create_or_find(params)
+  #   binding.pry
+  #   if params.length > 3
+  #     connection.post('/api/v1/users') do |req|
+  #       req.body = {user: params}
+  #     end
+  #   else
+  #     connection.get("/api/v1/users/#{params[:ID]}") do |req|
+  #       req.headers = params
+  #     end
+  #   end
+  # end
 end
