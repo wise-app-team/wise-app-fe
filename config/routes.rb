@@ -8,13 +8,18 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show'
   get "/auth/:provider/callback", to: 'sessions#create' 
       #(:provider functions as a placeholder in case we implement another one)
-  resources :users, only: [:new, :create]
+      post "/users/new", to: "users#create"
+      
+      resources :users, only: [:show, :new] do 
+        resources :meds, only: [:index] do
+          resources :search, only: [:index]
+        end
+      end
 
   namespace :api do
     namespace :v1 do
       get '/drugs/find_all', to: 'drugs/search#find_all'
-      resources :users, only: [:create]
-
+      resources :users, only: [:show, :create]
     end
   end
 end
