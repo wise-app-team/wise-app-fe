@@ -8,7 +8,8 @@
   <p><%= f.label :dose3, "Dose 3" %></p>
   <p><%= f.text_field :dose3, value: @user_drug.dose3 %></p>
   <p><%= f.label :prn, "As Needed" %></p>
-  <p><%= f.text_field :prn %></p>
+  <p><%= f.radio_button :prn, true, checked: @user_drug.prn == true %> <%= f.label :prn, "True" %></p>
+  <p><%= f.radio_button :prn, false, checked: @user_drug.prn == false %> <%= f.label :prn, "False" %></p>
   <p><%= f.label :notes, "Notes" %></p>
   <p><%= f.text_field :notes, value: @user_drug.notes %></p>
   <p><%= f.submit "Submit" %></p>

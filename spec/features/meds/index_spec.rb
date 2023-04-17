@@ -81,15 +81,19 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_content("Notes: Take with food")
     end
 
-    it "I see an edit link next to each medication" do
+    it "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
       within "#medication-1" do
         expect(page).to have_link("Edit")
-        click_on "Edit"
-
-        expect(current_path).to eq("/users/1/meds/1/edit")
-
-        save_and_open_page
+        click_on "Edit"  
       end
+
+      expect(current_path).to eq("/users/1/meds/1/edit")
+
+      expect(page).to have_field('dose1', with: '2000-01-01T19:00:00.000Z')
+      expect(page).to have_field('dose2', with: '2056-01-01T20:00:00.000Z')
+      expect(page).to have_field('dose3', with: '2077-01-01T21:00:00.000Z')
+      expect(page).to have_checked_field('prn', with: 'false')
+      expect(page).to have_field('notes', with: 'Take with food')
     end
   end
 end
