@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/', to: 'landing#index'
+
   get '/dashboard', to: 'users#show'
   get "/auth/:provider/callback", to: 'sessions#create' 
       #(:provider functions as a placeholder in case we implement another one)
