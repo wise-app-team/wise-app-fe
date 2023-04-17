@@ -12,7 +12,7 @@
 <h3>Current Medications</h3>
 
 <% @drugs.each do |drug| %>
-  <div id="#medication-<%= drug.id %>">
+  <div id="medication-<%= drug.id %>">
     <p>Name: <%= drug.name %></p>
     <% @user_drugs.each do |user_drug| %>
       <% if user_drug.drug_id == drug.id %>
@@ -21,7 +21,7 @@
         <p>Dose 3: <%= user_drug.dose3 %></p>
         <p>As Needed: <%= user_drug.prn %></p>
         <p>Notes: <%= user_drug.notes %></p>
-        <%# <p><%= link_to "Edit", "/users/1/meds/#{user_drug.id}/edit" %>
+        <p><%= link_to "Edit", "/users/1/meds/#{drug.id}/edit" %></p>
         <%# <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %>
       <% end %>
     <% end %>

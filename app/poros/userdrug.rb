@@ -1,5 +1,6 @@
 class Userdrug
-  attr_accessor :user_id, 
+  attr_accessor :id,
+                :user_id, 
                 :drug_id,
                 :dose1,
                 :dose2,
@@ -8,6 +9,7 @@ class Userdrug
                 :notes
 
   def initialize(data)
+    @id = data[:id]
     @user_id = data[:user_id]
     @drug_id = data[:drug_id]
     @dose1 = data[:dose1]

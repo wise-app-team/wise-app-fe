@@ -1,0 +1,15 @@
+<h1><%= @drug.name %> Edit</h1>
+
+<%= form_with url: "/users/#{@user_id}/meds", method: :patch, local: true do |f| %>
+  <p><%= f.label :dose1, "Dose 1" %></p>
+  <p><%= f.text_field :dose1, value: @user_drug.dose1 %></p>
+  <p><%= f.label :dose2, "Dose 2" %></p>
+  <p><%= f.text_field :dose2, value: @user_drug.dose2 %></p>
+  <p><%= f.label :dose3, "Dose 3" %></p>
+  <p><%= f.text_field :dose3, value: @user_drug.dose3 %></p>
+  <p><%= f.label :prn, "As Needed" %></p>
+  <p><%= f.text_field :prn %></p>
+  <p><%= f.label :notes, "Notes" %></p>
+  <p><%= f.text_field :notes, value: @user_drug.notes %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

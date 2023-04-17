@@ -81,9 +81,14 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_content("Notes: Take with food")
     end
 
-    xit "I see an edit button next to each medication" do
+    it "I see an edit link next to each medication" do
       within "#medication-1" do
-        expect(page).to have_button("Edit")
+        expect(page).to have_link("Edit")
+        click_on "Edit"
+
+        expect(current_path).to eq("/users/1/meds/1/edit")
+
+        save_and_open_page
       end
     end
   end
