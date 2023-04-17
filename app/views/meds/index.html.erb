@@ -1,0 +1,29 @@
+<h1>Medical Index Page</h1>
+
+<%= link_to "Dashboard", "/dashboard" %>
+<%= link_to "Medical Page", "/users/1/meds" %>
+
+<%= form_with url: "/users/1/meds", method: :get, local: true do |f| %>
+  <p><%= f.label :search, "Search for Medication to add to list" %></p>
+  <p><%= f.text_field :search, value: params[:search] %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+<h3>Current Medications</h3>
+
+<% @drugs.each do |drug| %>
+  <div id="medication-<%= drug.id %>">
+    <p>Name: <%= drug.name %></p>
+    <% @user_drugs.each do |user_drug| %>
+      <% if user_drug.drug_id == drug.id %>
+        <p>Dose 1: <%= user_drug.dose1 %></p>
+        <p>Dose 2: <%= user_drug.dose2 %></p>
+        <p>Dose 3: <%= user_drug.dose3 %></p>
+        <p>As Needed: <%= user_drug.prn %></p>
+        <p>Notes: <%= user_drug.notes %></p>
+        <p><%= link_to "Edit", "/users/1/meds/#{drug.id}/edit" %></p>
+        <%# <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
