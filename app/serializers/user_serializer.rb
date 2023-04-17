@@ -5,18 +5,18 @@ class UserSerializer
               :email,
               :password
               
-  def self.format_users(auth_hash)
-    binding.pry
-    {
-      user: 
-      {
-        name: auth_hash[:info][:name],
-        email: auth_hash[:info][:email],
-        password: auth_hash[:credentials][:token],
-        password_confirmation: auth_hash[:credentials][:token]
-      }
-    }
-  end
+  # def self.format_users(auth_hash)
+  #   binding.pry
+  #   {
+  #     user: 
+  #     {
+  #       name: auth_hash[:info][:name],
+  #       email: auth_hash[:info][:email],
+  #       token: auth_hash[:credentials][:token]
+  #       # password_confirmation: auth_hash[:credentials][:token]
+  #     }
+  #   }
+  # end
 end
 
 # user.provider = auth.provider

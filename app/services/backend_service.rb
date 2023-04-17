@@ -1,6 +1,6 @@
 class BackendService
   def conn 
-      Faraday.new(url: "http://localhost:3000")
+      Faraday.new(url: "http://localhost:5000")
       
       #change to heroku url when ready
       #Faraday.new(url: "https://fierce-retreat-58631.herokuapp.com")
@@ -30,8 +30,8 @@ class BackendService
         {
           name: auth_hash[:info][:name],
           email: auth_hash[:info][:email],
-          password: auth_hash[:credentials][:token],
-          password_confirmation: auth_hash[:credentials][:token]
+          token: auth_hash[:credentials][:token]
+          # password_confirmation: auth_hash[:credentials][:token]
         }
       }
       binding.pry

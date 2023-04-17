@@ -7,7 +7,7 @@ class User < ApplicationRecord
       user.google_id = auth.uid
       user.name = auth.info.name
       user.email = auth.info.email
-      user.password = auth.credentials.token
+      user.token = auth.credentials.token
       binding.pry
     end
   end
