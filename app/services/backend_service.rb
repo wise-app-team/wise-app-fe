@@ -14,8 +14,8 @@ class BackendService
   #   response = conn.get("/api/v1/users/#{user.id}")
   # end
 
-  def user_medications(user_id)
-    response = conn.get("/api/v1/users/#{user_id}/meds")
+  def user_info(user_id)
+    response = conn.get("/api/v1/users/#{user_id}")
     JSON.parse(response.body, symbolize_names: true)
   end
 end
