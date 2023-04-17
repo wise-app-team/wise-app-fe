@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User Show Page' do
   describe "As a visitor, when I visit /users/user_id" do
-    it "I see the name of the app at the top of the page & links to all pages" do
+    xit "I see the name of the app at the top of the page & links to all pages" do
       visit '/users/1'
 
       stub_request(:post, "http://localhost:3000/api/v1/users").

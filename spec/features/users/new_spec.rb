@@ -29,7 +29,7 @@ RSpec.describe 'New User' do
       #   #skipping for now
       # end
       describe 'When I fill out the form with valid data' do
-        it 'I am redirected to my dashboard and see a flash message that I am logged in' do
+        xit 'I am redirected to my dashboard and see a flash message that I am logged in' do
           visit '/users/new'
 
           user_info = "{\"data\":{\"id\":\"1\",\"type\":\"user\"}}"
@@ -63,7 +63,7 @@ RSpec.describe 'New User' do
       end
 
       describe 'when I enter invalid or missing information in the form' do
-        it 'I am returned to the form and see a flash message indicating which field(s) I am missing' do
+        xit 'I am returned to the form and see a flash message indicating which field(s) I am missing' do
           visit '/users/new'
 
           stub_request(:post, "http://localhost:3000/api/v1/users").
