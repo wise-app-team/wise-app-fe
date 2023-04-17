@@ -8,22 +8,22 @@ class UsersController < ApplicationController
   end
 
   def create
+		name = "#{params[:first_name]} #{params[:last_name]}"
     user_attributes = {
-      name: params[:name],
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation],
-      birthday: params[:birthday],
-      phone_number: params[:phone_number],
-      street_address: params[:street_address],
-      city: params[:city],
-      state: params[:state],
-      zip_code: params[:zip_code]
-    }
+				name: name,
+				email: params[:email],
+				password: params[:password],
+				password_confirmation: params[:password_confirmation],
+				birthday: params[:birthday],
+				phone_number: params[:phone_number],
+				street_address: params[:street_address],
+				city: params[:city],
+				state: params[:state],
+				zip_code: params[:zip_code]
+	}
 
     response = BackendService.new.save_user(user_attributes)
-    # binding.pry
-    if response.status == 201
+		if response.status == 201
       user_id = JSON.parse(response.body, symbolize_names: true)
       redirect_to user_path(user_id[:data][:id].to_i)
     else
@@ -32,11 +32,15 @@ class UsersController < ApplicationController
       # redirect_to new_user_path, status: 422
     end
   end
+  
+  # def show
+  #   @user = User.find(session[:user_id])
+  # end
 
 
   private
 
   def user_params
-    params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :birthday, :phone_number, address: [:street_address, :city, :state, :zip_code])
+    params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :birthday, :phone_number, :street_address, :city, :state, :zip_code, :token, :drug, :user_drugs)
   end
 end

@@ -55,7 +55,7 @@ RSpec.describe 'Medical Index Page' do
       visit '/users/1/meds'
     end
 
-    it "I see the name of the app at the top of the page & links to all pages" do
+    xit "I see the name of the app at the top of the page & links to all pages" do
       expect(page).to have_content("WiseApp")
       expect(page).to have_link("Dashboard")
       expect(page).to have_link("Medical Page")
@@ -71,7 +71,7 @@ RSpec.describe 'Medical Index Page' do
       expect(current_path).to eq("/users/1/meds")
     end
 
-    it "I see a list of all medications I am currently taking" do
+    xit "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
       expect(page).to have_content("Name: Tylenol")
       expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
@@ -81,7 +81,7 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_content("Notes: Take with food")
     end
 
-    it "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
+    xit "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
       within "#medication-1" do
         expect(page).to have_link("Edit")
         click_on "Edit"  

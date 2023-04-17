@@ -21,28 +21,19 @@
 
   <p><%= form.label :birthday %>
   <%= form.date_field :birthday %></p>
-  
-<div class='address'>
-    <%=form.fields_for :address do |a| %>
-        <div class="street">
-            <label>Street address </label>
-            <%= a.text_field :street_address, id: :street_address %>
-        </div>
-        <div class="city">
-            <label>City </label>
-            <%= a.text_field :city, id: :city %>
-        </div>
-        <div class="state">
-            <label>State </label>
-            <%=a .text_field :state, id: :state %>
-        </div>
 
-        <div class="zip_code">
-            <label>Zip </label>
-            <%= a.number_field :zip_code, id: :zip_code %>
-        </div>
-</div>
-<%end%>  
+  <p><%= form.label :street_address %>
+  <%= form.text_field :street_address %></p>
+
+  <p><%= form.label :city %>
+  <%= form.text_field :city %></p>
+
+  <p><%= form.label :state %>
+  <%= form.text_field :state %></p>
+
+  <p><%= form.label :zip_code %>
+  <%= form.number_field :zip_code %></p>
+
 
   <p><%= form.submit "Submit"%></p>
 <%end%>
