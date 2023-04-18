@@ -98,7 +98,6 @@ RSpec.describe 'Medical Index Page' do
 
     it "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
-      save_and_open_page
 
       within "#medication-1" do
         expect(page).to have_content("Name: Tylenol")
@@ -147,7 +146,6 @@ RSpec.describe 'Medical Index Page' do
         click_on "Delete"  
       end
 
-      # save_and_open_page
       expect(current_path).to eq("/users/1/meds")
 
       # expect(page).to_not have_content("Name: Tylenol")
