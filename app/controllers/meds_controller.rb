@@ -2,6 +2,7 @@ class MedsController < ApplicationController
   def index
     @drugs = BackendFacade.new.user_medications(params[:user_id])
     @user_drugs = BackendFacade.new.user_drugs_relations(params[:user_id])
+    @drug_search_results = DrugFacade.new.search_results(params[:search])
   end
 
   def edit

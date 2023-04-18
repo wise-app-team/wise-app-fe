@@ -12,4 +12,8 @@ class BackendFacade
       Userdrug.new(user_drug)
     end
   end
+
+  def user_logging_in(user_params)
+    user = BackendService.new.login_user(user_params)
+  end
 end

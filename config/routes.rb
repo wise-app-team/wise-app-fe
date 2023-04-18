@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: 'sessions#create' 
 
   get '/', to: 'landing#index'
+  get '/login', to: 'users#login'
+  post '/login', to: 'users#login_user'
 
   get '/dashboard', to: 'users#show'
+  
   get "/auth/:provider/callback", to: 'sessions#create' 
       #(:provider functions as a placeholder in case we implement another one)
       post "/users/new", to: "users#create"
