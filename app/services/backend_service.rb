@@ -12,6 +12,12 @@ class BackendService
 		end
   end
 
+  def login_user(user_params)
+    response = conn.post('/api/v1/users/login') do |req|
+      req.body = user_params
+    end
+  end
+
   # def show_user(user)
   #   response = conn.get("/api/v1/users/#{user.id}")
   # end
