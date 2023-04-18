@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Medical Index Page' do
   describe "As a visitor, when I visit /users/user_id/meds" do
     before do
-      
-
       data = {"data"=>
                 {"id"=>"1",
                  "type"=>"user",
@@ -42,6 +40,7 @@ RSpec.describe 'Medical Index Page' do
                 }
             }
             
+            drugs_searched = File.read('spec/fixtures/tylenol.json')
 
             stub_request(:get, "http://localhost:5000/api/v1/users/1").
             with(
@@ -51,6 +50,24 @@ RSpec.describe 'Medical Index Page' do
              'User-Agent'=>'Faraday v2.7.4'
               }).
             to_return(status: 200, body: data.to_json, headers: {})
+
+            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=").
+            with(
+              headers: {
+             'Accept'=>'*/*',
+             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+             'User-Agent'=>'Faraday v2.7.4'
+              }).
+            to_return(status: 200, body: drugs_searched, headers: {})
+
+            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=Tylenol").
+            with(
+              headers: {
+              'Accept'=>'*/*',
+              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'User-Agent'=>'Faraday v2.7.4'
+              }).
+            to_return(status: 200, body: drugs_searched, headers: {})
 
       visit '/users/1/meds'
     end
@@ -69,6 +86,16 @@ RSpec.describe 'Medical Index Page' do
       click_on "Submit"
 
       expect(current_path).to eq("/users/1/meds")
+    end
+
+    it "I see a list of medications I have searched for" do
+      click_on "Submit"
+  
+      expect(page).to have_content("Medications Searched")
+  
+      within "#meds-searched" do
+        expect(page).to have_content("Tylenol", count: 8)
+      end
     end
 
     it "I see a list of all medications I am currently taking" do
