@@ -203,7 +203,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
   <img src="https://avatars.githubusercontent.com/u/114712752?v=4" alt="Profile" width="80" height="80">
   <p align="center">
     Kassandra Leyba<br>
-    <a href="https://github.com/kassandraleyba">Github: https://github.com/kassandraleyba</a>
+    <a href="https://github.com/kassandraleyba">Github: kassandraleyba</a>
   </p>
 </div>
 
