@@ -92,7 +92,7 @@ RSpec.describe 'Medical Index Page' do
       click_on "Submit"
   
       expect(page).to have_content("Medications Searched")
-
+  
       within "#meds-searched" do
         expect(page).to have_content("Tylenol", count: 8)
       end

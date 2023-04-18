@@ -32,7 +32,7 @@
 <div id="meds-searched">
   <% if params[:search] %>
     <% @all_drugs_searched.each do |drug| %>
-        <p><%= drug.name %> <%= link_to "Add", "/users/1/meds" %></p>
+        <p><%= drug.synonym %> <%= link_to "Add", "/users/1/meds" %></p>
     <% end %>
   <% end%>
 </div>
