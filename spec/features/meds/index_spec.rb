@@ -98,7 +98,8 @@ RSpec.describe 'Medical Index Page' do
 
     it "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
-      
+      save_and_open_page
+
       within "#medication-1" do
         expect(page).to have_content("Name: Tylenol")
         expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
@@ -106,6 +107,15 @@ RSpec.describe 'Medical Index Page' do
         expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
         expect(page).to have_content("As Needed: false")
         expect(page).to have_content("Notes: Take with food")
+      end
+
+      within "#medication-43" do
+        expect(page).to have_content("Name: Tums")
+        expect(page).to have_content("Dose 1: 1993-01-01T19:00:00.000Z")
+        expect(page).to have_content("Dose 2: 2123-01-01T20:00:00.000Z")
+        expect(page).to have_content("Dose 3: 40032-01-01T21:00:00.000Z")
+        expect(page).to have_content("As Needed: true")
+        expect(page).to have_content("Notes: Do a backflip WHILE you take it")
       end
     end
 
