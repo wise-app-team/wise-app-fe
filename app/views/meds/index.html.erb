@@ -3,12 +3,6 @@
 <%= link_to "Dashboard", "/dashboard" %>
 <%= link_to "Medical Page", "/users/1/meds" %>
 
-<%= form_with url: "/users/1/meds", method: :get, local: true do |f| %>
-  <p><%= f.label :search, "Search for Medication to add to list" %></p>
-  <p><%= f.text_field :search, value: params[:search] %></p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
-
 <h3>Current Medications</h3>
 
 <% @drugs.each do |drug| %>
@@ -27,3 +21,18 @@
     <% end %>
   </div>
 <% end %>
+
+<%= form_with url: "/users/1/meds", method: :get, local: true do |f| %>
+  <p><%= f.label :search, "Search for Medication to add to list" %></p>
+  <p><%= f.text_field :search, value: params[:search] %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+<h3>Medications Searched</h3>
+<div id="meds-searched">
+  <% if params[:search] %>
+    <% @all_drugs_searched.each do |drug| %>
+        <p><%= drug.synonym %> <%= link_to "Add", "/users/1/meds" %></p>
+    <% end %>
+  <% end%>
+</div>
