@@ -20,6 +20,10 @@ class BackendFacade
   end
 
   def delete_user_drug(user_id, drug_id)
-    BackendService.new.delete_user_drug(single_user_drug(user_id, drug_id).id)
+     BackendService.new.delete_user_drug(single_user_drug(user_id, drug_id).id)
   end
-end
+
+   def user_logging_in(user_params)
+     user = BackendService.new.login_user(user_params)
+   end
+ end

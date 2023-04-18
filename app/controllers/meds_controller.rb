@@ -3,6 +3,7 @@ class MedsController < ApplicationController
     @all_drugs_searched = DrugsFacade.new.search_results(params[:search])
     @drugs = BackendFacade.new.user_medications(params[:user_id])
     @user_drugs = BackendFacade.new.user_drugs_relations(params[:user_id])
+    @drug_search_results = DrugsFacade.new.search_results(params[:search])
   end
 
   def edit
@@ -15,6 +16,7 @@ class MedsController < ApplicationController
     end
 
     @user_id = params[:user_id]
+    @medications = BackendFacade.new.user_medications(params[:user_id])
   end
 
   def destroy
