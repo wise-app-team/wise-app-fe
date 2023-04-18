@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.feature "Google OAuth2 Authentication", type: :request do
   before do
-    # "api"
-    OmniAuth.config.test_mode = true
-    @user_info = OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-      provider: 'google_oauth2',
-      uid: '12345',
-      info: {
-        email: 'lochnessie@gmail.com',
-        name: 'Vanessa Loch'
-        },
-      credentials: {
-        token: '234978018904890'
-      }
-      })
+    # # "api"
+    # OmniAuth.config.test_mode = true
+    # @user_info = OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    #   provider: 'google_oauth2',
+    #   uid: '12345',
+    #   info: {
+    #     email: 'lochnessie@gmail.com',
+    #     name: 'Vanessa Loch'
+    #     },
+    #   credentials: {
+    #     token: '234978018904890'
+    #   }
+    #   })
     
   end
   
@@ -30,6 +30,7 @@ RSpec.feature "Google OAuth2 Authentication", type: :request do
       binding.pry
       
       user = User.find_by(email: 'lochnessie@gmail.com')
+      #currently returning no users in the User.all array
       binding.pry
       
       
