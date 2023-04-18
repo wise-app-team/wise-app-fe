@@ -84,6 +84,15 @@ RSpec.describe 'Medical Index Page' do
               }).
             to_return(status: 200, body: drugs_searched, headers: {})
 
+            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: drugs_searched, headers: {})
+
       visit '/users/1/meds'
     end
 
