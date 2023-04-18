@@ -13,7 +13,13 @@ class BackendFacade
     end
   end
 
+  def single_user_drug(user_id, drug_id)
+    user_drugs_relations(user_id).find do |user_drug|
+      user_drug.drug_id == drug_id.to_i
+    end
+  end
+
   def delete_user_drug(user_id, drug_id)
-    BackendService.new.delete_user_drug(user_drugs_relations(user_id).first.id)
+    BackendService.new.delete_user_drug(single_user_drug(user_id, drug_id).id)
   end
 end

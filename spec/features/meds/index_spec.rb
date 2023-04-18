@@ -24,7 +24,13 @@ RSpec.describe 'Medical Index Page' do
                       "name"=>"Tylenol", 
                       "synonym"=>"yes", 
                       "created_at"=>"2023-04-15T23:01:03.782Z",
-                      "updated_at"=>"2023-04-15T23:01:03.782Z"}
+                      "updated_at"=>"2023-04-15T23:01:03.782Z"},
+                      {"id"=>43, 
+                        "rxcui"=>"54321",
+                        "name"=>"Tums", 
+                        "synonym"=>"no", 
+                        "created_at"=>"2023-04-15T23:01:03.782Z",
+                        "updated_at"=>"2023-04-15T23:01:03.782Z"}
                     ],
                     "user_drugs"=>
                     [{"id"=>1,
@@ -36,7 +42,17 @@ RSpec.describe 'Medical Index Page' do
                       "prn"=>false,
                       "notes"=>"Take with food",
                       "created_at"=>"2023-04-15T23:01:03.782Z",
-                      "updated_at"=>"2023-04-15T23:01:03.782Z"}
+                      "updated_at"=>"2023-04-15T23:01:03.782Z"},
+                      {"id"=>21,
+                        "user_id"=>1,
+                        "drug_id"=>43,
+                        "dose1"=>"1993-01-01T19:00:00.000Z",
+                        "dose2"=>"2123-01-01T20:00:00.000Z",
+                        "dose3"=>"40032-01-01T21:00:00.000Z",
+                        "prn"=>true,
+                        "notes"=>"Do a backflip WHILE you take it",
+                        "created_at"=>"2023-04-15T23:01:03.782Z",
+                        "updated_at"=>"2023-04-15T23:01:03.782Z"}
                     ]
                   }
                 }
@@ -82,12 +98,15 @@ RSpec.describe 'Medical Index Page' do
 
     it "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
-      expect(page).to have_content("Name: Tylenol")
-      expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
-      expect(page).to have_content("Dose 2: 2056-01-01T20:00:00.000Z")
-      expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
-      expect(page).to have_content("As Needed: false")
-      expect(page).to have_content("Notes: Take with food")
+      
+      within "#medication-1" do
+        expect(page).to have_content("Name: Tylenol")
+        expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
+        expect(page).to have_content("Dose 2: 2056-01-01T20:00:00.000Z")
+        expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
+        expect(page).to have_content("As Needed: false")
+        expect(page).to have_content("Notes: Take with food")
+      end
     end
 
     it "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
