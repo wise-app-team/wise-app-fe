@@ -18,4 +18,9 @@ class MedsController < ApplicationController
     @user_id = params[:user_id]
     @medications = BackendFacade.new.user_medications(params[:user_id])
   end
+
+  def destroy
+    BackendFacade.new.delete_user_drug(params[:user_id], params[:id])
+    redirect_to "/users/#{params[:user_id]}/meds"
+  end
 end
