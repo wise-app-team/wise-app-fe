@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Medical Index Page' do
   describe "As a visitor, when I visit /users/user_id/meds" do
     before do
-      
-
       data = {"data"=>
                 {"id"=>"1",
                  "type"=>"user",
@@ -42,8 +40,9 @@ RSpec.describe 'Medical Index Page' do
                 }
             }
             
+            drugs_searched = File.read('spec/fixtures/tylenol.json')
 
-            stub_request(:get, "http://localhost:3000/api/v1/users/1").
+            stub_request(:get, "http://localhost:5000/api/v1/users/1").
             with(
               headers: {
              'Accept'=>'*/*',
@@ -52,16 +51,34 @@ RSpec.describe 'Medical Index Page' do
               }).
             to_return(status: 200, body: data.to_json, headers: {})
 
+            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=").
+            with(
+              headers: {
+             'Accept'=>'*/*',
+             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+             'User-Agent'=>'Faraday v2.7.4'
+              }).
+            to_return(status: 200, body: drugs_searched, headers: {})
+
+            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=Tylenol").
+            with(
+              headers: {
+              'Accept'=>'*/*',
+              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'User-Agent'=>'Faraday v2.7.4'
+              }).
+            to_return(status: 200, body: drugs_searched, headers: {})
+
       visit '/users/1/meds'
     end
 
-    xit "I see the name of the app at the top of the page & links to all pages" do
+    it "I see the name of the app at the top of the page & links to all pages" do
       expect(page).to have_content("WiseApp")
       expect(page).to have_link("Dashboard")
       expect(page).to have_link("Medical Page")
     end
 
-    xit "can search for a medication" do
+    it "can search for a medication" do
       expect(page).to have_content("Search for Medication to add to list")
       expect(page).to have_button("Submit")
 
@@ -71,7 +88,17 @@ RSpec.describe 'Medical Index Page' do
       expect(current_path).to eq("/users/1/meds")
     end
 
-    xit "I see a list of all medications I am currently taking" do
+    it "I see a list of medications I have searched for" do
+      click_on "Submit"
+  
+      expect(page).to have_content("Medications Searched")
+  
+      within "#meds-searched" do
+        expect(page).to have_content("Tylenol", count: 8)
+      end
+    end
+
+    it "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
       expect(page).to have_content("Name: Tylenol")
       expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
@@ -81,7 +108,7 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_content("Notes: Take with food")
     end
 
-    xit "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
+    it "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
       within "#medication-1" do
         expect(page).to have_link("Edit")
         click_on "Edit"  
