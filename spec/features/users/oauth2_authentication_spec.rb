@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "Google OAuth2 Authentication", type: :request do
   before do
-    # # "api"
+    # WebMock.allow_net_connect!
+    
+    
+    # binding.pry
+    # click_on ""
     # OmniAuth.config.test_mode = true
     # @user_info = OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
     #   provider: 'google_oauth2',
@@ -20,7 +24,11 @@ RSpec.feature "Google OAuth2 Authentication", type: :request do
   
   describe "callback" do
     it "authenticate a user" do
+      
       WebMock.allow_net_connect!
+      # visit "/"
+      # save_and_open_page
+      
       get "/auth/google_oauth2/callback"
       post "/auth/google_oauth2/callback"
       
