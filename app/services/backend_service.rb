@@ -12,6 +12,10 @@ class BackendService
 		end
   end
 
+  def delete_user_drug(user_drug_id)
+    conn.delete("/api/v1/user_drugs/#{user_drug_id}") 
+  end
+
   # def show_user(user)
   #   response = conn.get("/api/v1/users/#{user.id}")
   # end

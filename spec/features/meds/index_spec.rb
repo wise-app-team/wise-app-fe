@@ -52,6 +52,15 @@ RSpec.describe 'Medical Index Page' do
               }).
             to_return(status: 200, body: data.to_json, headers: {})
 
+            stub_request(:delete, "http://localhost:5000/api/v1/user_drugs/1").
+            with(
+              headers: {
+             'Accept'=>'*/*',
+             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+             'User-Agent'=>'Faraday v2.7.4'
+              }).
+            to_return(status: 200, body: data.to_json, headers: {})
+
       visit '/users/1/meds'
     end
 
@@ -94,6 +103,32 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_field('dose3', with: '2077-01-01T21:00:00.000Z')
       expect(page).to have_checked_field('prn', with: 'false')
       expect(page).to have_field('notes', with: 'Take with food')
+    end
+
+    it "I see a delete link next to each mdeication, clicking it, I am returned to '/users/user_id/meds' and see that the deleted medication is no longer present" do
+      within "#medication-1" do
+        expect(page).to have_content("Name: Tylenol")
+        expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
+        expect(page).to have_content("Dose 2: 2056-01-01T20:00:00.000Z")
+        expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
+        expect(page).to have_content("As Needed: false")
+        expect(page).to have_content("Notes: Take with food")
+        expect(page).to have_link("Delete")
+
+        click_on "Delete"  
+      end
+
+      # save_and_open_page
+      expect(current_path).to eq("/users/1/meds")
+
+      # expect(page).to_not have_content("Name: Tylenol")
+      # expect(page).to_not have_content("Dose 1: 2000-01-01T19:00:00.000Z")
+      # expect(page).to_not have_content("Dose 2: 2056-01-01T20:00:00.000Z")
+      # expect(page).to_not have_content("Dose 3: 2077-01-01T21:00:00.000Z")
+      # expect(page).to_not have_content("As Needed: false")
+      # expect(page).to_not have_content("Notes: Take with food")
+      # expect(page).to_not have_link("Edit")
+      # expect(page).to_not have_link("Delete")
     end
   end
 end

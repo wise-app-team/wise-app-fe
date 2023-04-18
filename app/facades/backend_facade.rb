@@ -12,4 +12,8 @@ class BackendFacade
       Userdrug.new(user_drug)
     end
   end
+
+  def delete_user_drug(user_id, drug_id)
+    BackendService.new.delete_user_drug(user_drugs_relations(user_id).first.id)
+  end
 end

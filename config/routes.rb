@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post "/users/new", to: "users#create"
       
       resources :users, only: [:show, :new] do 
-        resources :meds, only: [:index, :edit] do
+        resources :meds, only: [:index, :edit, :destroy] do
           resources :search, only: [:index]
         end
       end

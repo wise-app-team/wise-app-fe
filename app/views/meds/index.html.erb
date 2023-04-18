@@ -22,7 +22,7 @@
         <p>As Needed: <%= user_drug.prn %></p>
         <p>Notes: <%= user_drug.notes %></p>
         <p><%= link_to "Edit", "/users/1/meds/#{drug.id}/edit" %></p>
-        <%# <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %>
+        <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %></p>
       <% end %>
     <% end %>
   </div>
