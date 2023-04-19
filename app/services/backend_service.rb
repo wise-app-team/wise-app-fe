@@ -21,14 +21,13 @@ class BackendService
       req.body = user_params
     end
   end
-
-  # def show_user(user)
-  #   response = conn.get("/api/v1/users/#{user.id}")
-  # end
+  
 
   def user_info(user_id)
-    response = conn.get("/api/v1/users/#{user_id}")
-    JSON.parse(response.body, symbolize_names: true)
+    data = conn.get("/api/v1/users/#{user_id}")
+		response = data.body
+    x = JSON.parse(response, symbolize_names: true)
+		x[:data]
   end
  
   def user_create_by_oauth(auth_hash)

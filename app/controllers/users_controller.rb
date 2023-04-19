@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    # @user = BackendService.new.show_user(user_params)
+		@user = BackendFacade.new.show(params[:id])
   end
 
   def new
@@ -46,12 +46,6 @@ class UsersController < ApplicationController
       # redirect_to new_user_path, status: 422
     end
   end
-  
-  # def show
-  #   @user = User.find(session[:user_id])
-  # end
-
-
 
   private
 

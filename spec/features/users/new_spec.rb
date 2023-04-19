@@ -20,10 +20,10 @@ RSpec.describe 'New User' do
         expect(page).to have_field(:birthday)
         expect(page).to have_field(:phone_number)
        
-				expect(page).to have_field(:street_address)
-				expect(page).to have_field(:city)
-				expect(page).to have_field(:state)
-				expect(page).to have_field(:zip_code)
+        expect(page).to have_field(:street_address)
+        expect(page).to have_field(:city)
+        expect(page).to have_field(:state)
+        expect(page).to have_field(:zip_code)
       end
       # it 'the form should also have fields for primary contact, including phone, email and name and secondary contact' do
       #   #skipping for now
@@ -32,19 +32,45 @@ RSpec.describe 'New User' do
         it 'I am redirected to my dashboard and see a flash message that I am logged in' do
           visit '/users/new'
 
-          user_info = "{\"data\":{\"id\":\"1\",\"type\":\"user\"}}"
-
+          user_data = {
+            id: 1,
+            type: 'user',
+            attributes: {
+              name: 'John Doe',
+              email: 'john@john.com',
+              provider: nil,
+              token: nil,
+              password_digest: '$2a$04$OrtXfsglYyJG322eUYyoR.7td4Za/IN2gUlw1uiBx5.vdAEh4fLXi',
+              birthday: '1999-01-01',
+              phone_number: '1234567890',
+              street_address: '123 Main St',
+              city: 'Denver',
+              state: 'NY',
+              zip_code: '12345',
+              drugs: [],
+              user_drugs: []
+            }
+          }
      
           stub_request(:post, "http://localhost:5000/api/v1/users").
           with(
-            body: {"birthday"=>"04/05/1975", "city"=>"Denver", "email"=>"Pedro@pedro.com", "name"=>"Pedro Pascal", "password"=>"password123", "password_confirmation"=>"password123", "phone_number"=>"555-555-5555", "state"=>"CO", "street_address"=>"123 Main St", "zip_code"=>"80209"},
+            body: {"birthday"=>"04/05/1975", "city"=>"Denver", "email"=>"Pedro@pedro.com", "name"=>"Pedro Pascal", "password"=>"password123", "password_confirmation"=>"password123", "phone_number"=>"555-555-5555", "state"=>"CO", "street_address"=>"123 Main St", "zip_code"=>"80209"}.to_json,
             headers: {
-           'Accept'=>'*/*',
-           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-           'Content-Type'=>'application/x-www-form-urlencoded',
-           'User-Agent'=>'Faraday v2.7.4'
+              'Accept'=>'*/*',
+              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Content-Type'=>'application/json',
+              'User-Agent'=>'Faraday v2.7.4'
             }).
-          to_return(status: 201, body: user_info, headers: {})
+          to_return(status: 201, body: user_data, headers: {})
+
+					stub_request(:get, "http://localhost:5000/api/v1/users/1").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: user_data, headers: {})
 
           fill_in :first_name, with: 'Pedro'
           fill_in :last_name, with: 'Pascal'

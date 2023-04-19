@@ -1,13 +1,17 @@
 class BackendFacade
   def user_medications(user_id)
-    medication_data = BackendService.new.user_info(user_id)[:data][:attributes][:drugs]
+    medication_data = BackendService.new.user_info(user_id)[:attributes][:drugs]
     medications = medication_data.map do |medication|
       Drug.new(medication)
     end
   end
 
+  def show(user_id)
+			user_data = BackendService.new.user_info(user_id)
+		end
+
   def user_drugs_relations(user_id)
-    user_drug_data = BackendService.new.user_info(user_id)[:data][:attributes][:user_drugs]
+    user_drug_data = BackendService.new.user_info(user_id)[:attributes][:user_drugs]
     drug_relations = user_drug_data.map do |user_drug|
       Userdrug.new(user_drug)
     end
