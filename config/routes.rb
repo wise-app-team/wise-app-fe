@@ -16,11 +16,13 @@ Rails.application.routes.draw do
       #(:provider functions as a placeholder in case we implement another one)
   post "/users/new", to: "users#create"
       
-      resources :users, only: [:show, :new] do 
-        resources :meds, only: [:index, :edit, :destroy] do
-          resources :search, only: [:index]
-        end
-      end
+  get "/users/:user_id/meds", to: "meds#index"
+  
+  resources :users, only: [:show, :new] do 
+    resources :meds, only: [:index, :edit, :destroy] do
+      resources :search, only: [:index]
+    end
+  end
 
   namespace :api do
     namespace :v1 do
