@@ -1,8 +1,7 @@
 <h1>Add a medication to your list</h1>
-<%binding.pry%>
-<p>Name of Medication:<%= @medication.synonym %></p>
+<p>Name of Medication:<%= @medication_name %></p>
 
-<p><%= form_with url: "/users/#{user.id}/meds", method: :post, local: :true do |form| %></p>
+<p><%= form_with url: "/users/#{@user_id}/meds", method: :post, local: :true do |form| %></p>
 
   <p><%= form.label :dose1 %></p>
   <p><%= form.time_field :dose1 %></p>
@@ -13,9 +12,9 @@
   <p><%= form.label :dose3 %></p>
   <p><%= form.time_field :dose3 %></p>
 
-  <p><%= f.label :prn, "As Needed" %></p>
-  <p><%= f.radio_button :prn, true %></p>
-  <p><%= f.radio_button :prn, false %></p>
+  <p><%= form.label :prn, "As Needed" %></p>
+  <p><%= form.radio_button :prn, true %></p>
+  <p><%= form.radio_button :prn, false %></p>
   
 
   <p><%= form.label :notes %></p>

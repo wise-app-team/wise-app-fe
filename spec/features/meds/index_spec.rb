@@ -129,17 +129,21 @@ RSpec.describe 'Medical Index Page' do
       within "#meds-searched" do
         expect(page).to have_content("Tylenol", count: 8)
         expect(page).to have_link("Add", count: 8)
-
-        first(:link, "Add").click
-
       end
+
+        within "#medication-1243440" do
+          expect(page).to have_link("Add")
+          # first(:link, "Add").click
+          click_on "Add"
+        end        
+
       expect(current_path).to eq("/users/1/meds/new")
 
       expect(page).to have_content("Add a medication to your list")
       expect(page).to have_field(:dose1)
       expect(page).to have_field(:dose2)
       expect(page).to have_field(:dose3)
-      expect(page).to have_field(:as_needed)
+      expect(page).to have_field(:prn)
       expect(page).to have_field(:notes)
     end
 

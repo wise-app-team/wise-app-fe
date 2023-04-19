@@ -19,13 +19,13 @@ class BackendService
   # end
 
   def save_drug(drug_params)
-    conn.post('/api/v1/drugs') do |req|
+    response = conn.post('/api/v1/drugs') do |req|
       req.body = drug_params
     end
   end
 
    def delete_user_drug(user_drug_id)
-     conn.delete("/api/v1/user_drugs/#{user_drug_id}") 
+     response = conn.delete("/api/v1/user_drugs/#{user_drug_id}") 
    end
 
   def login_user(user_params)
