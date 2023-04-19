@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: 'sessions#create' 
       #(:provider functions as a placeholder in case we implement another one)
   post "/users/new", to: "users#create"
-      
+	
+	
   resources :users, only: [:show, :new] do 
     resources :meds, only: [:index, :edit] 
   end

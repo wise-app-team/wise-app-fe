@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    # @user = User.find_by(google_id: session[:])
+    @user = BackendService.new.show_user(user_params)
   end
 
   def new
@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
 		name = "#{params[:first_name]} #{params[:last_name]}"
     user_attributes = {
 				name: name,

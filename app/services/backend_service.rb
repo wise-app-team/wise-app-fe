@@ -37,6 +37,13 @@ class BackendService
       }
       
     end
+  end
+  
+  def find_by_email(email)
+    # On the backend, there should be a route => get "/api/v1/users/:email". 
+    # This should return the user by their email
+    response = conn.get("/api/v1/users/#{email}")
     binding.pry
+    JSON.parse(response.body, symbolize_names: true)
   end
 end

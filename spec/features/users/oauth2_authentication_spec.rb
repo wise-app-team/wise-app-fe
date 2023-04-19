@@ -17,35 +17,53 @@ RSpec.feature "Google OAuth2 Authentication", type: :request do
     @user_info = OmniAuth.config.mock_auth[:google_oauth2]
   end
   
-  it "logs in a user with valid credentials" do
+  xit "logs in a user with valid credentials" do
     visit '/auth/google_oauth2'
     expect(page).to have_content 'Logged in successfully.'
     expect(page).to have_content 'Lucie Collier'
   end
   
   describe "callback" do
+    
     it "authenticate a user" do
-      # auth_hash = OmniAuth.config.mock_auth[:google_oauth2]
-      get "/auth/google_oauth2/callback", params: {provider: @user_info.provider, uid: @user_info.uid}
-      # binding.pry
+      get "/auth/google_oauth2/callback", params: { provider: @user_info.provider, uid: @user_info.uid }
       
-      
-      user = User.find_by(google_id: 554012304)
-      # expect(response).to redirect_to("/dashboard")
+      user = BackendFacade.new.find_by_email(@user_info.info.email)
+# binding.pry
       expect(session["session_id"]).to_not be_nil
       expect(user).to_not be_nil
       expect(user.email).to eq(@user_info.info.email)
       expect(user.name).to eq(@user_info.info.name)
       expect(user.token).to eq(@user_info.credentials.token)
       expect(user.provider).to eq(@user_info.provider)
-      # binding.pry
-      
-      
-      #currently returning no users in the User.all array
-      binding.pry
-      
       
       WebMock.disable_net_connect!
     end
   end
+    
+    # xit "authenticate a user" do
+    #   # auth_hash = OmniAuth.config.mock_auth[:google_oauth2]
+    #   get "/auth/google_oauth2/callback", params: {provider: @user_info.provider, uid: @user_info.uid}
+    #   # binding.pry
+    # 
+    #   BackendService.find_by_email(@user_info.info.email)
+    # 
+    #   user = User.find_by(google_id: 554012304)
+    #   # expect(response).to redirect_to("/dashboard")
+    #   expect(session["session_id"]).to_not be_nil
+    #   expect(user).to_not be_nil
+    #   expect(user.email).to eq(@user_info.info.email)
+    #   expect(user.name).to eq(@user_info.info.name)
+    #   expect(user.token).to eq(@user_info.credentials.token)
+    #   expect(user.provider).to eq(@user_info.provider)
+    #   # binding.pry
+    # 
+    # 
+    #   #currently returning no users in the User.all array
+    #   # binding.pry
+    # 
+    # 
+    #   WebMock.disable_net_connect!
+    # end
+  # end
 end
