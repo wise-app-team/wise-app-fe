@@ -1,5 +1,5 @@
 <h1>Add a medication to your list</h1>
-<p>Name of Medication:<%= @medication_name %></p>
+<h2>Name of Medication:<%= @medication_name %></h2>
 
 <p><%= form_with url: "/users/#{@user_id}/meds", method: :post, local: :true do |form| %></p>
 

@@ -25,19 +25,21 @@ class MedsController < ApplicationController
   end
 
   def create
-    @all_drugs_searched = DrugsFacade.new.search_results(params[:search])
-    binding.pry
+    drug_id = BackendFacade.new.find_drug_id_by_rxcui(params[:rxcui])
+    user_drug_params = {
+      :user_id => params[:user_id],
+      :drug_id => drug_id[:data][:id],
+      :dose1 => params[:dose1],
+      :dose2 => params[:dose2],
+      :dose3 => params[:dose3],
+      :prn => params[:prn],
+      :notes => params[:notes]
+    }
+    @user_drug = BackendFacade.new.save_drug_to_user(user_drug_params)
   end
 
   def new
     @medication_name = params[:synonym]
     @user_id = params[:user_id]
-  #   drug_params = { 
-  #     :rxcui => params[:rxcui],
-  #     :name => params[:name],
-  #     :synonym => params[:synonym]
-  #   }    
-  #   @drug = BackendFacade.new.save_drug_to_DB(drug_params)
-  #   redirect_to "/users/#{params[:user_id]}/meds/new"
   end
 end
