@@ -113,13 +113,34 @@ RSpec.describe 'Medical Index Page' do
     end
 
     it "I see a list of medications I have searched for" do
+      stub_request(:post, "http://localhost:5000/api/v1/drugs").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Content-Type'=>'application/x-www-form-urlencoded',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: "", headers: {})
       click_on "Submit"
   
       expect(page).to have_content("Medications Searched")
   
       within "#meds-searched" do
         expect(page).to have_content("Tylenol", count: 8)
+        expect(page).to have_link("Add", count: 8)
+
+        first(:link, "Add").click
+
       end
+      expect(current_path).to eq("/users/1/meds/new")
+
+      expect(page).to have_content("Add a medication to your list")
+      expect(page).to have_field(:dose1)
+      expect(page).to have_field(:dose2)
+      expect(page).to have_field(:dose3)
+      expect(page).to have_field(:as_needed)
+      expect(page).to have_field(:notes)
     end
 
     it "I see a list of all medications I am currently taking" do

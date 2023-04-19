@@ -23,4 +23,15 @@ class MedsController < ApplicationController
     BackendFacade.new.delete_user_drug(params[:user_id], params[:id])
     redirect_to "/users/#{params[:user_id]}/meds"
   end
+
+  def create
+    @all_drugs_searched = DrugsFacade.new.search_results(params[:search])
+    binding.pry
+  end
+
+  def new
+    binding.pry
+    @user_id = params[:user_id]
+    @drug = BackendFacade.new.save_drug_to_DB(params)
+  end
 end

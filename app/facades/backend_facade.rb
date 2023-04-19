@@ -13,6 +13,20 @@ class BackendFacade
     end
   end
 
+  # def save_drug_to_user(user_id, drug_id)
+  #   user_drug_params = {
+  #     user_id: user_id,
+  #     drug_id: drug_id
+  #   }
+  #   BackendService.new.save_user_drug(user_drug_params)
+  # end
+
+  def save_drug_to_DB(drug_params)
+    BackendService.new.save_drug(drug_params)
+    Drug.new(drug_params)
+  end
+
+
   def single_user_drug(user_id, drug_id)
     user_drugs_relations(user_id).find do |user_drug|
       user_drug.drug_id == drug_id.to_i
