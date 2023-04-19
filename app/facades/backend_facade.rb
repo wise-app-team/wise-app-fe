@@ -12,7 +12,7 @@ class BackendFacade
       Userdrug.new(user_drug)
     end
   end
-  
+
   def find_by_email(email)
     user_data = BackendService.new.find_by_email(email)[:data]
     # binding.pry

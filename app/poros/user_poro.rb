@@ -11,6 +11,7 @@ class UserPoro
               :provider
 
   def initialize(data)
+    # binding.pry
     @name = data[:attributes][:name]
     @email = data[:attributes][:email]
     @birthday = data[:attributes][:birthday]
