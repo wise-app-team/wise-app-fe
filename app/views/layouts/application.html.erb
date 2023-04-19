@@ -8,11 +8,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <link href="https://unpkg.com/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
   </head>
 
   <body>
-    <h1>Welcome to WiseApp</h1>
-    <br>
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name %>
     <% end %> 
