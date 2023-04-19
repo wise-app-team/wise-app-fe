@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
 		name = "#{params[:first_name]} #{params[:last_name]}"
     user_attributes = {
 				name: name,

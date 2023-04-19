@@ -23,6 +23,7 @@ class BackendService
  
   
   def user_create_by_oauth(auth_hash)
+    
     response = conn.post("/api/v1/users") do |req|
       req.body = {
         user: 
@@ -34,6 +35,8 @@ class BackendService
           # password_confirmation: auth_hash[:credentials][:token]
         }
       }
+      
     end
+    binding.pry
   end
 end

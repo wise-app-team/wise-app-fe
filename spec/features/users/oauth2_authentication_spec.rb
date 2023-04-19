@@ -26,8 +26,8 @@ RSpec.feature "Google OAuth2 Authentication", type: :request do
   describe "callback" do
     it "authenticate a user" do
       # auth_hash = OmniAuth.config.mock_auth[:google_oauth2]
-      post "/auth/google_oauth2/callback", params: {provider: @user_info.provider, uid: @user_info.uid}
-      binding.pry
+      get "/auth/google_oauth2/callback", params: {provider: @user_info.provider, uid: @user_info.uid}
+      # binding.pry
       
       
       user = User.find_by(google_id: 554012304)
