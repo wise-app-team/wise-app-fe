@@ -99,7 +99,7 @@ RSpec.describe 'Medical Index Page' do
     it "I see the name of the app at the top of the page & links to all pages" do
       expect(page).to have_content("WiseApp")
       expect(page).to have_link("Dashboard")
-      expect(page).to have_link("Medical Page")
+      expect(page).to have_link("MyMeds")
     end
 
     it "can search for a medication" do
