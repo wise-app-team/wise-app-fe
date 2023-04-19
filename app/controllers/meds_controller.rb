@@ -5,6 +5,7 @@ class MedsController < ApplicationController
     @drugs = BackendFacade.new.user_medications(params[:user_id])
     @user_drugs = BackendFacade.new.user_drugs_relations(params[:user_id])
     @drug_search_results = DrugsFacade.new.search_results(params[:search])
+    @interactions = DrugsFacade.new.interactions_list(@drugs.map(&:rxcui).join('+'))
   end
 
   def edit
