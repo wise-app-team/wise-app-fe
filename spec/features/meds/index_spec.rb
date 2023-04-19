@@ -22,7 +22,13 @@ RSpec.describe 'Medical Index Page' do
                       "name"=>"Tylenol", 
                       "synonym"=>"yes", 
                       "created_at"=>"2023-04-15T23:01:03.782Z",
-                      "updated_at"=>"2023-04-15T23:01:03.782Z"}
+                      "updated_at"=>"2023-04-15T23:01:03.782Z"},
+                      {"id"=>43, 
+                        "rxcui"=>"54321",
+                        "name"=>"Tums", 
+                        "synonym"=>"no", 
+                        "created_at"=>"2023-04-15T23:01:03.782Z",
+                        "updated_at"=>"2023-04-15T23:01:03.782Z"}
                     ],
                     "user_drugs"=>
                     [{"id"=>1,
@@ -34,7 +40,17 @@ RSpec.describe 'Medical Index Page' do
                       "prn"=>false,
                       "notes"=>"Take with food",
                       "created_at"=>"2023-04-15T23:01:03.782Z",
-                      "updated_at"=>"2023-04-15T23:01:03.782Z"}
+                      "updated_at"=>"2023-04-15T23:01:03.782Z"},
+                      {"id"=>21,
+                        "user_id"=>1,
+                        "drug_id"=>43,
+                        "dose1"=>"1993-01-01T19:00:00.000Z",
+                        "dose2"=>"2123-01-01T20:00:00.000Z",
+                        "dose3"=>"40032-01-01T21:00:00.000Z",
+                        "prn"=>true,
+                        "notes"=>"Do a backflip WHILE you take it",
+                        "created_at"=>"2023-04-15T23:01:03.782Z",
+                        "updated_at"=>"2023-04-15T23:01:03.782Z"}
                     ]
                   }
                 }
@@ -51,14 +67,13 @@ RSpec.describe 'Medical Index Page' do
               }).
             to_return(status: 200, body: data.to_json, headers: {})
 
-            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=").
+            stub_request(:delete, "http://localhost:5000/api/v1/user_drugs/1").
             with(
               headers: {
              'Accept'=>'*/*',
              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
              'User-Agent'=>'Faraday v2.7.4'
-              }).
-            to_return(status: 200, body: drugs_searched, headers: {})
+              }).to_return(status: 200, body: data.to_json, headers: {})
 
             stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=Tylenol").
             with(
@@ -69,13 +84,33 @@ RSpec.describe 'Medical Index Page' do
               }).
             to_return(status: 200, body: drugs_searched, headers: {})
 
+            stub_request(:get, "https://rxnav.nlm.nih.gov/REST/drugs.json?name=").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: drugs_searched, headers: {})
+
+         no_interactions = File.read('spec/fixtures/no_interactions.json')
+
+         stub_request(:get, "https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=12345%2054321").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: "", headers: {})
+
       visit '/users/1/meds'
     end
 
     it "I see the name of the app at the top of the page & links to all pages" do
       expect(page).to have_content("WiseApp")
       expect(page).to have_link("Dashboard")
-      expect(page).to have_link("Medical Page")
+      expect(page).to have_link("MyMeds")
     end
 
     it "can search for a medication" do
@@ -100,12 +135,24 @@ RSpec.describe 'Medical Index Page' do
 
     it "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
-      expect(page).to have_content("Name: Tylenol")
-      expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
-      expect(page).to have_content("Dose 2: 2056-01-01T20:00:00.000Z")
-      expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
-      expect(page).to have_content("As Needed: false")
-      expect(page).to have_content("Notes: Take with food")
+
+      within "#medication-1" do
+        expect(page).to have_content("Name: Tylenol")
+        expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
+        expect(page).to have_content("Dose 2: 2056-01-01T20:00:00.000Z")
+        expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
+        expect(page).to have_content("As Needed: false")
+        expect(page).to have_content("Notes: Take with food")
+      end
+
+      within "#medication-43" do
+        expect(page).to have_content("Name: Tums")
+        expect(page).to have_content("Dose 1: 1993-01-01T19:00:00.000Z")
+        expect(page).to have_content("Dose 2: 2123-01-01T20:00:00.000Z")
+        expect(page).to have_content("Dose 3: 40032-01-01T21:00:00.000Z")
+        expect(page).to have_content("As Needed: true")
+        expect(page).to have_content("Notes: Do a backflip WHILE you take it")
+      end
     end
 
     it "I see an edit link next to each medication, clicking it, I am taken to a form, with the values correctly filled." do
@@ -121,6 +168,39 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_field('dose3', with: '2077-01-01T21:00:00.000Z')
       expect(page).to have_checked_field('prn', with: 'false')
       expect(page).to have_field('notes', with: 'Take with food')
+    end
+
+    it "I see a delete link next to each mdeication, clicking it, I am returned to '/users/user_id/meds' and see that the deleted medication is no longer present" do
+      within "#medication-1" do
+        expect(page).to have_content("Name: Tylenol")
+        expect(page).to have_content("Dose 1: 2000-01-01T19:00:00.000Z")
+        expect(page).to have_content("Dose 2: 2056-01-01T20:00:00.000Z")
+        expect(page).to have_content("Dose 3: 2077-01-01T21:00:00.000Z")
+        expect(page).to have_content("As Needed: false")
+        expect(page).to have_content("Notes: Take with food")
+        expect(page).to have_link("Delete")
+
+        click_on "Delete"  
+      end
+
+      expect(current_path).to eq("/users/1/meds")
+
+      # expect(page).to_not have_content("Name: Tylenol")
+      # expect(page).to_not have_content("Dose 1: 2000-01-01T19:00:00.000Z")
+      # expect(page).to_not have_content("Dose 2: 2056-01-01T20:00:00.000Z")
+      # expect(page).to_not have_content("Dose 3: 2077-01-01T21:00:00.000Z")
+      # expect(page).to_not have_content("As Needed: false")
+      # expect(page).to_not have_content("Notes: Take with food")
+      # expect(page).to_not have_link("Edit")
+      # expect(page).to_not have_link("Delete")
+    end
+
+    it "shows 'No interactions found' if there are no interactions" do
+      expect(page).to have_content("Interactions:")
+      
+      within "#interactions" do
+        expect(page).to have_content("No interactions found.")
+      end
     end
   end
 end

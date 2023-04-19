@@ -10,14 +10,21 @@ Rails.application.routes.draw do
   # post "/auth/:provider/callback", to: 'users#create' 
 
   get '/', to: 'landing#index'
+  get '/login', to: 'users#login'
+  post '/login', to: 'users#login_user'
 
   get '/dashboard', to: 'users#show'
+  
   get "/auth/:provider/callback", to: 'sessions#create' 
       #(:provider functions as a placeholder in case we implement another one)
   post "/users/new", to: "users#create"
       
+  get "/users/:user_id/meds", to: "meds#index"
+  
   resources :users, only: [:show, :new] do 
-    resources :meds, only: [:index, :edit] 
+    resources :meds, only: [:index, :edit, :destroy] do
+      resources :search, only: [:index]
+    end
   end
 
   namespace :api do

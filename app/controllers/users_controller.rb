@@ -7,6 +7,20 @@ class UsersController < ApplicationController
 
   end
 
+  def login
+  end
+
+  def login_user
+    response = BackendFacade.new.user_logging_in(user_params)
+    if response.status == 200
+      user_id = JSON.parse(response.body, symbolize_names: true)
+      redirect_to user_path(user_id[:data][:id].to_i)
+    else 
+      flash[:error] = "Invalid Credentials"
+      render :login, status: 400
+    end
+  end
+
   def create
     # binding.pry
 		name = "#{params[:first_name]} #{params[:last_name]}"
@@ -37,6 +51,7 @@ class UsersController < ApplicationController
   # def show
   #   @user = User.find(session[:user_id])
   # end
+
 
 
   private

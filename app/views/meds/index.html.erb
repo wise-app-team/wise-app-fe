@@ -1,7 +1,17 @@
+<h1>WiseApp</h1>
+
 <h1>Medical Index Page</h1>
 
 <%= link_to "Dashboard", "/dashboard" %>
-<%= link_to "Medical Page", "/users/1/meds" %>
+<%= link_to "MyMeds", "/users/1/meds" %>
+
+<div class="flex justify-between items-center bg-gray-100 py-4 px-8">
+  <h1 class="text-2xl font-bold">MyMeds</h1>
+  <div>
+    <%= link_to 'Dashboard', dashboard_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
+    <%= link_to 'MyMeds', "/users/1/meds", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+</div>
 
 <h3>Current Medications</h3>
 
@@ -16,7 +26,7 @@
         <p>As Needed: <%= user_drug.prn %></p>
         <p>Notes: <%= user_drug.notes %></p>
         <p><%= link_to "Edit", "/users/1/meds/#{drug.id}/edit" %></p>
-        <%# <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %>
+        <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %></p>
       <% end %>
     <% end %>
   </div>
@@ -35,4 +45,13 @@
         <p><%= drug.synonym %> <%= link_to "Add", "/users/1/meds" %></p>
     <% end %>
   <% end%>
+</div>
+
+<h3>Interactions:</h3>
+<div id="interactions">
+  <ul>
+    <% @interactions.each do |interaction| %>
+      <li><p><%= interaction.description %></p></li>
+    <% end %>
+  </ul>
 </div>
