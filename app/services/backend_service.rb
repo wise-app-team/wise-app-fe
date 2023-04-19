@@ -32,6 +32,7 @@ class BackendService
   end
  
   def user_create_by_oauth(auth_hash)
+    
     response = conn.post("/api/v1/users") do |req|
       req.body = {
         user: 
@@ -43,19 +44,16 @@ class BackendService
           # password_confirmation: auth_hash[:credentials][:token]
         }
       }
+      
     end
   end
   
-  # def user_create_or_find(params)
-  #   binding.pry
-  #   if params.length > 3
-  #     connection.post('/api/v1/users') do |req|
-  #       req.body = {user: params}
-  #     end
-  #   else
-  #     connection.get("/api/v1/users/#{params[:ID]}") do |req|
-  #       req.headers = params
-  #     end
-  #   end
-  # end
+  def find_by_email(email)
+    # binding.pry
+    # On the backend, there should be a route => get "/api/v1/users/:email". 
+    # This should return the user by their email
+    response = conn.get("/api/v1/users/#{email}")
+    # binding.pry
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end

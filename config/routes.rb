@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 	get '/dashboard', to: 'users#show'
-  get "/auth/:provider/callback", to: 'sessions#create' 
+  # post "/auth/:provider/callback", to: 'sessions#create'  # Doesn't look like we need this?
+	# post '/auth/google_oauth2/callback', to: 'sessions#create_with_google'
+
+  # post "/auth/:provider/callback", to: 'users#create' 
 
   get '/', to: 'landing#index'
   get '/login', to: 'users#login'

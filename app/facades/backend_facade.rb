@@ -13,6 +13,11 @@ class BackendFacade
     end
   end
 
+  def find_by_email(email)
+    user_data = BackendService.new.find_by_email(email)[:data]
+    UserPoro.new(user_data)
+  end
+  
   def single_user_drug(user_id, drug_id)
     user_drugs_relations(user_id).find do |user_drug|
       user_drug.drug_id == drug_id.to_i
@@ -20,10 +25,10 @@ class BackendFacade
   end
 
   def delete_user_drug(user_id, drug_id)
-     BackendService.new.delete_user_drug(single_user_drug(user_id, drug_id).id)
+    BackendService.new.delete_user_drug(single_user_drug(user_id, drug_id).id)
   end
 
-   def user_logging_in(user_params)
-     user = BackendService.new.login_user(user_params)
-   end
- end
+  def user_logging_in(user_params)
+    user = BackendService.new.login_user(user_params)
+  end
+end
