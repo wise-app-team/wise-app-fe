@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    # @user = BackendService.new.show_user(user_params)
+    # @user = User.find_by(google_id: session[:])
   end
 
   def new

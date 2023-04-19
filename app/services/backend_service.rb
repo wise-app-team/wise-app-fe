@@ -36,17 +36,4 @@ class BackendService
       }
     end
   end
-  
-  # def user_create_or_find(params)
-  #   binding.pry
-  #   if params.length > 3
-  #     connection.post('/api/v1/users') do |req|
-  #       req.body = {user: params}
-  #     end
-  #   else
-  #     connection.get("/api/v1/users/#{params[:ID]}") do |req|
-  #       req.headers = params
-  #     end
-  #   end
-  # end
 end
