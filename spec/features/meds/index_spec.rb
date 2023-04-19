@@ -93,6 +93,17 @@ RSpec.describe 'Medical Index Page' do
            }).
          to_return(status: 200, body: drugs_searched, headers: {})
 
+         no_interactions = File.read('spec/fixtures/no_interactions.json')
+
+         stub_request(:get, "https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=12345%2054321").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: "", headers: {})
+
       visit '/users/1/meds'
     end
 
@@ -182,6 +193,14 @@ RSpec.describe 'Medical Index Page' do
       # expect(page).to_not have_content("Notes: Take with food")
       # expect(page).to_not have_link("Edit")
       # expect(page).to_not have_link("Delete")
+    end
+
+    it "shows 'No interactions found' if there are no interactions" do
+      expect(page).to have_content("Interactions:")
+      
+      within "#interactions" do
+        expect(page).to have_content("No interactions found.")
+      end
     end
   end
 end

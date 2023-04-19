@@ -36,3 +36,12 @@
     <% end %>
   <% end%>
 </div>
+
+<h3>Interactions:</h3>
+<div id="interactions">
+  <ul>
+    <% @interactions.each do |interaction| %>
+      <li><p><%= interaction.description %></p></li>
+    <% end %>
+  </ul>
+</div>
