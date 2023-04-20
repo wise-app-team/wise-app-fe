@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def show
     # require 'pry'; binding.pry
     # @user = BackendFacade.new.user_info(params[:id]) ### We need a user
-    @user = BackendFacade.new.find_user_by_id(params[:id]) ### We need a user
+    @user = BackendFacade.new.find_user_by_id(params[:id])
     # require 'pry'; binding.pry
   end
 
@@ -16,9 +16,8 @@ class UsersController < ApplicationController
   def login_user
     response = BackendFacade.new.user_logging_in(user_params)
     if response.status == 200
-      user_id = JSON.parse(response.body, symbolize_names: true)
-      # require 'pry'; binding.pry
-      redirect_to user_path(user_id[:data][:id].to_i)
+      user = JSON.parse(response.body, symbolize_names: true)
+      redirect_to user_path(user[:data][:id].to_i)
     else 
       flash[:error] = "Invalid Credentials"
       render :login, status: 400
