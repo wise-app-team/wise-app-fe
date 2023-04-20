@@ -26,6 +26,7 @@ class BackendService
 
   def find_drug_id_by_rxcui(rxcui)
     response = conn.get("/api/v1/find_by_rxcui?rxcui=#{rxcui}")
+    # binding.pry
     JSON.parse(response.body, symbolize_names: true)
   end
 
