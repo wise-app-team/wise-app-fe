@@ -46,6 +46,15 @@ RSpec.describe 'New User' do
             }).
           to_return(status: 201, body: user_info, headers: {})
 
+          stub_request(:get, "http://localhost:5000/api/v1/users/1").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: "", headers: {})
+
           fill_in :first_name, with: 'Pedro'
           fill_in :last_name, with: 'Pascal'
           fill_in :email, with: 'Pedro@pedro.com'
