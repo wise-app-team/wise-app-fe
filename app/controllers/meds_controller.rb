@@ -39,6 +39,7 @@ class MedsController < ApplicationController
   end
 
   def create
+    binding.pry
     drug_id = BackendFacade.new.find_drug_id_by_rxcui(params[:rxcui])
     user_drug_params = {
       :user_id => params[:user_id],
@@ -53,7 +54,15 @@ class MedsController < ApplicationController
   end
 
   def new
+    binding.pry
+ 
     @medication_name = params[:synonym]
+    @rxcui = params[:rxcui].to_s
     @user_id = params[:user_id]
+  end
+
+  private
+  def meds_params
+    params.permit(:rxcui)
   end
 end

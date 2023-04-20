@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post "/users/new", to: "users#create"
 
       resources :users, only: [:show, :new] do 
-        post '/meds/new', to: 'drugs#create'
+        post '/drugs', to: 'drugs#create'
         get '/meds/new', to: 'meds#new'
         post '/meds/new', to: 'meds#create'
         resources :meds, only: [:index, :edit, :destroy, :create] do

@@ -2,6 +2,7 @@
 <h2>Name of Medication:<%= @medication_name %></h2>
 
 <p><%= form_with url: "/users/#{@user_id}/meds", method: :post, local: :true do |form| %></p>
+  <%= form.hidden_field :rxcui, value: @rxcui %>
 
   <p><%= form.label :dose1 %></p>
   <p><%= form.time_field :dose1 %></p>
