@@ -85,6 +85,21 @@ Wise App is a web app seeking to solve a modern problem with a modern solution. 
 
 WiseApp is an application that helps users manage their medication intake by providing features such as medication search, reminders, and interaction checking. Users can register through the site or use Google to log in through OmniAuth. Once logged in, they can search for their medications and add them to their profile. The application allows users to set reminders for when to take each medication and receive email or text notifications. They can also view any potential interactions that the medications have.
 
+This project is the frontend side of WiseApp and uses the following technology stack:
+
+- Ruby 3.1.1
+- Rails 7.0.4
+- PostgreSQL as the database for Active Record
+- Puma web server
+- New Relic for application monitoring
+- bcrypt for password security
+- Faraday for making HTTP requests
+- Bootsnap for caching to reduce boot times
+- Figaro for managing application configuration
+- JSON API Serializer for generating JSON responses
+
+Additionally, the project uses several gems for development and testing, such as Capybara, RSpec, Faker, and Shoulda Matchers.
+
 Stretch goals include adding a social aspect to help users find events in their local area.
 
 [^1](https://www.kff.org/health-reform/issue-brief/data-note-prescription-drugs-and-older-adults/) 
@@ -153,6 +168,12 @@ You must have the following software installed on your system:
 ### App Images
 
 ![welcome](/images/welcome.png)
+![login](/images/user_login.png)
+![register](/images/create_an_account.png)
+![dashboard](/images/user_dashboard.png)
+![medical_page](/images/med_page_current_med.png)
+![med_search](/images/medication_search.png)
+
 
 <!-- CONTRIBUTING -->
 ## Contributing
