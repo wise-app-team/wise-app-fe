@@ -39,7 +39,6 @@ class MedsController < ApplicationController
   end
 
   def create
-    binding.pry
     drug_id = BackendFacade.new.find_drug_id_by_rxcui(params[:rxcui])
     user_drug_params = {
       :user_id => params[:user_id],
@@ -51,10 +50,12 @@ class MedsController < ApplicationController
       :notes => params[:notes]
     }
     @user_drug = BackendFacade.new.save_drug_to_user(user_drug_params)
+
+    redirect_to "/users/#{params[:user_id]}/meds"
   end
 
   def new
-    binding.pry
+    # binding.pry
  
     @medication_name = params[:synonym]
     @rxcui = params[:rxcui].to_s

@@ -9,6 +9,7 @@ class DrugService
     if response.body == ""
       parsed = "No interactions found."
     else
+      # require 'pry'; binding.pry
       parsed = JSON.parse(response.body, symbolize_names: true)
     end
   end

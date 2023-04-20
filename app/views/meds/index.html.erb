@@ -43,7 +43,7 @@
   <% if params[:search] %>
     <% @all_drugs_searched.each do |drug| %>
       <div id="medication-<%= drug.rxcui %>">
-        <p><%= drug.synonym %> <%= link_to "Add", "/users/#{@user_id}/drugs", method: :post, local: true %></p>
+        <p><%= drug.synonym %> <%= button_to "Add", user_drugs_path(@user_id, rxcui: drug.rxcui, name: drug.name, synonym: drug.synonym), method: :post %></p>
     </div>
     <% end %>
   <% end%>
