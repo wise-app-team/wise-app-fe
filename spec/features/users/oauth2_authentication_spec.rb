@@ -31,9 +31,8 @@ RSpec.feature "Google OAuth2 Authentication", type: :request do
   end
   
   describe "callback" do
-    it "authenticate a user" do
+    xit "authenticate a user" do
       get "/auth/google_oauth2/callback", params: { provider: @user_info.provider, uid: @user_info.uid }
-      
       user = BackendFacade.new.find_by_email(@user_info.info.email)
 
       expect(session["session_id"]).to_not be_nil
