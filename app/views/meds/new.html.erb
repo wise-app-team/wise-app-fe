@@ -13,9 +13,11 @@
   <p><%= form.label :dose3 %></p>
   <p><%= form.time_field :dose3 %></p>
 
-  <p><%= form.label :prn, "As Needed" %></p>
-  <p><%= form.radio_button :prn, true %></p>
-  <p><%= form.radio_button :prn, false %></p>
+  <p><%= form.label :prn, "As Needed?" %></p>
+  <p><%= form.radio_button :prn, true  %>
+    <%= form.label :prn_true, "True" %></p>
+  <p><%= form.radio_button :prn, false %>
+   <%= form.label :prn_false, "False" %></p>
   
 
   <p><%= form.label :notes %></p>

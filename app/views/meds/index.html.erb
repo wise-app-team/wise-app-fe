@@ -1,7 +1,7 @@
 <div class="flex justify-between items-center bg-gray-100 py-4 px-8">
   <h1 class="text-2xl font-bold">WiseApp</h1>
   <div>
-    <%= link_to 'Dashboard', dashboard_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
+    <%= link_to 'Dashboard', user_path(@user_id), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
     <%= link_to 'MyMeds', "/users/#{@user_id}/meds", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 </div>
@@ -18,10 +18,11 @@
           <p class="text-base mb-1">Dose 3: <%= user_drug.dose3 %></p>
           <p class="text-base mb-1">As Needed: <%= user_drug.prn %></p>
           <p class="text-base mb-1">Notes: <%= user_drug.notes %></p>
-          <p class="text-sm">
+          <%# <p class="text-sm">
+          #for future functionality use
             <%= link_to "Edit", "/users/#{@user_id}/meds/#{drug.id}/edit", class: "mr-2 text-blue-500 hover:text-blue-700" %>
-            <%= link_to "Delete", "/users/#{@user_id}/meds/#{user_drug.id}", method: :delete, class: "text-red-500 hover:text-red-700" %>
-          </p>
+            <%# <%= link_to "Delete", "/users/#{@user_id}/meds/#{user_drug.id}", method: :delete, class: "text-red-500 hover:text-red-700" %>
+          <%# </p> %>
         <% end %>
       <% end %>
     </div>
