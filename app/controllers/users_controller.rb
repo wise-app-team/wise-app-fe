@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def show
-    # @user = BackendService.new.show_user(user_params)
+    # require 'pry'; binding.pry
+    # @user = BackendFacade.new.user_info(params[:id]) ### We need a user
+    @user = BackendFacade.new.find_user_by_id(params[:id]) ### We need a user
+    # require 'pry'; binding.pry
   end
 
   def new
@@ -22,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # binding.pry
 		name = "#{params[:first_name]} #{params[:last_name]}"
     user_attributes = {
 				name: name,

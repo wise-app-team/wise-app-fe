@@ -17,7 +17,8 @@ RSpec.describe 'User Show Page' do
       to_return(status: 201, body: "", headers: {})
 
       expect(page).to have_content("WiseApp")
-      # expect(page).to have_link("Dashboard")
+      expect(page).to have_link("Dashboard")
+      expect(page).to have_link("MyMeds")
     end
   end
 end

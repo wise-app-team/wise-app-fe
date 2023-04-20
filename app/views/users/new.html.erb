@@ -1,39 +1,64 @@
-<h3>Create Account below to get started!</h3>
+<h3 class="text-xl font-bold mb-4">Welcome to WiseApp. Create Account below to get started!</h3>
 
-<%= form_with url: '/users/new', method: :post, local: :true do |form|%>
-  <p><%= form.label :first_name%>
-  <%= form.text_field :first_name %></p>
+<%= form_with url: '/users/new', method: :post, local: true do |form|%>
+<div class="bg-white rounded-lg overflow-hidden shadow-md px-8 pt-6 pb-8 mb-4">
+  <div class="mb-4">
+    <%= form.label :first_name, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :first_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :last_name%>
-  <%= form.text_field :last_name %></p>
+  <div class="mb-4">
+    <%= form.label :last_name, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :last_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :email%>
-  <%= form.text_field :email %></p>
+  <div class="mb-4">
+    <%= form.label :email, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :password %>
-  <%= form.password_field :password %></p>
+  <div class="mb-4">
+    <%= form.label :password, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%=form.label :password_confirmation %>
-  <%=form.password_field :password_confirmation %></p>
+  <div class="mb-4">
+    <%= form.label :password_confirmation, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :phone_number %>
-  <%= form.telephone_field :phone_number %></p>
+  <div class="mb-4">
+    <%= form.label :phone_number, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.telephone_field :phone_number, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :birthday %>
-  <%= form.date_field :birthday %></p>
+  <div class="mb-4">
+    <%= form.label :birthday, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.date_field :birthday, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :street_address %>
-  <%= form.text_field :street_address %></p>
+  <div class="mb-4">
+    <%= form.label :street_address, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :street_address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :city %>
-  <%= form.text_field :city %></p>
+  <div class="mb-4">
+    <%= form.label :city, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :city, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :state %>
-  <%= form.text_field :state %></p>
+  <div class="mb-4">
+    <p><%= form.label :state, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :state, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %></p>
+  </div>
 
-  <p><%= form.label :zip_code %>
-  <%= form.number_field :zip_code %></p>
+  <div class="mb-4">
+    <p><%= form.label :zip_code, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.number_field :zip_code, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %></p>
+ </div>
 
-
-  <p><%= form.submit "Submit"%></p>
+  <div class="mb-4">
+    <p><%= form.submit "Submit", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %></p>
+   </div>
+  </div>
 <%end%>

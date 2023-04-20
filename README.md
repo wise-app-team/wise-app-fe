@@ -32,19 +32,18 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">WiseApp</h3>
 
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/wise-app-team/wise-app-fe"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/wise-app-team/wise-app-be"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/wise-app-team/wise-app-fe">View Demo</a>
+       ·
+    <a href="https://github.com/wise-app-team/wise-app-be/issues">Report Bug</a>
     ·
-    <a href="https://github.com/wise-app-team/wise-app-fe/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/wise-app-team/wise-app-fe/issues">Request Feature</a>
+    <a href="https://github.com/wise-app-team/wise-app-be/issues">Request Feature</a>
   </p>
 </div>
 
@@ -81,13 +80,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` 
 
 Wise App is a web app seeking to solve a modern problem with a modern solution. As of 2019, Americans aged 65 or older take an average of four medications [^1]. Between insurance, specialties, and provider availability, not all medications are managed by the same providers, and that's where Wise App comes in.
 
-We are seeking to create an app that will allow a user to input their medications, track doses, and find out if there are interactions between the medications they have added. 
+WiseApp is an application that helps users manage their medication intake by providing features such as medication search, reminders, and interaction checking. Users can register through the site or use Google to log in through OmniAuth. Once logged in, they can search for their medications and add them to their profile. The application allows users to set reminders for when to take each medication and receive email or text notifications. They can also view any potential interactions that the medications have.
 
 Stretch goals include adding a social aspect to help users find events in their local area.
 
@@ -100,11 +96,20 @@ This is the front end repo, the back end repo is located [here](https://github.c
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 ### Built With
 
 * [![Rails]][Rails-url]
 * [![Circle-CI]][Circle-url]
+* [![PostgreSQL]][PostgreSQL-url]
+* [![Puma]][Puma-url]
+* [![bcrypt]][bcrypt-url]
+* [![Faraday]][Faraday-url]
+* [![Figaro]][Figaro-url]
+* [![JSON-Serializer]][JSON-Serializer-url]
+* [![Capybara]][Capybara-url]
+* [![RSpec]][RSpec-url]
+* [![Faker]][Faker-url]
+* [![Shoulda-Matchers]][Shoulda-Matchers-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -113,61 +118,41 @@ This is the front end repo, the back end repo is located [here](https://github.c
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+You must have the following software installed on your system:
+
+* [Ruby](https://www.ruby-lang.org/en/downloads/)
+* [Bundler](https://bundler.io/)
+* [PostgreSQL](https://www.postgresql.org/download/)
+
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone git@github.com:wise-app-team/wise-app-fe.git
    ```
-3. Install NPM packages
+2. Install dependencies
    ```sh
-   npm install
+   bundle install
    ```
-4. Enter your API in `config.js`
+3. Configure the database by running rails db:setup:
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   rails db:setup
    ```
+4. Start the server by running rails server:
+   ```js
+   rails server
+   ```
+5. Visit http://localhost:3000 in your web browser to confirm that the app is running. Notice, the back end service will need to be running concurrently on localhost:5000
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### App Images
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
- 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+![welcome](/images/welcome.png)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -184,17 +169,6 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -250,10 +224,36 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-<!--  -->
-* ["The Best README Template"](https://github.com/othneildrew/Best-README-Template)
-* []()
-* []()
+
+* ["The Best README Template" by Github User othneil](https://github.com/othneildrew/Best-README-Template)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GEMS -->
+## Gems
+
+* [Ruby 3.1.1](https://www.ruby-lang.org/en/)
+* [Ruby on Rails 7.0.4](https://rubyonrails.org/)
+* [PostgreSQL 1.1](https://www.postgresql.org/)
+* [Puma 5.0](https://github.com/puma/puma)
+* [bcrypt 3.1.7](https://github.com/codahale/bcrypt-ruby)
+* [Faraday](https://github.com/lostisland/faraday)
+* [Figaro](https://github.com/laserlemon/figaro)
+* [JSONAPI::Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer)
+* [New Relic RPM](https://docs.newrelic.com/docs/apm/agents/ruby-agent/configuration/ruby-agent-configuration/)
+* [RSpec](https://rspec.info/) (testing framework)
+* [Capybara](https://github.com/teamcapybara/capybara) (acceptance testing framework)
+* [FactoryBot](https://github.com/thoughtbot/factory_bot) (fixture replacement)
+* [Faker](https://github.com/faker-ruby/faker) (fake data generator)
+* [Orderly](https://github.com/jmondo/orderly) (gem for testing JSON response sorting)
+* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) (testing library)
+* [SimpleCov](https://github.com/simplecov-ruby/simplecov) (code coverage analysis tool)
+* [WebMock](https://github.com/bblimke/webmock) (library for stubbing HTTP requests)
+* [Bootsnap](https://github.com/Shopify/bootsnap) (speeds up boot time)
+* [TZInfo-Data](https://github.com/tzinfo/tzinfo-data) (timezone library)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -261,39 +261,27 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/wise-app-team/wise-app-fe.svg?style=for-the-badge
-[contributors-url]: https://github.com/wise-app-team/wise-app-fe/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/wise-app-team/wise-app-be.svg?style=for-the-badge
+[contributors-url]: https://github.com/wise-app-team/wise-app-be/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/wise-app-team/wise-app-fe.svg?style=for-the-badge
-[forks-url]: https://github.com/wise-app-team/wise-app-fe/network/members
+[forks-shield]: https://img.shields.io/github/forks/wise-app-team/wise-app-be.svg?style=for-the-badge
+[forks-url]: https://github.com/wise-app-team/wise-app-be/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/wise-app-team/wise-app-fe.svg?style=for-the-badge
-[stars-url]: https://github.com/wise-app-team/wise-app-fe/stargazers
+[stars-shield]: https://img.shields.io/github/stars/wise-app-team/wise-app-be.svg?style=for-the-badge
+[stars-url]: https://github.com/wise-app-team/wise-app-be/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/wise-app-team/wise-app-fe.svg?style=for-the-badge
-[issues-url]: https://github.com/wise-app-team/wise-app-fe/issues
+[issues-shield]: https://img.shields.io/github/issues/wise-app-team/wise-app-be.svg?style=for-the-badge
+[issues-url]: https://github.com/wise-app-team/wise-app-be/issues
 
-[license-shield]: https://img.shields.io/github/license/wise-app-team/wise-app-fe.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 
-
 [product-screenshot]: images/screenshot.png
 
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
+
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
@@ -302,5 +290,35 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Rails]: https://img.shields.io/badge/-Ruby%20on%20Rails-CC0000?logo=ruby-on-rails&logoColor=white&style=for-the-badge
 [Rails-url]: https://rubyonrails.org 
 
-[Circle-CI]: https://img.shields.io/circleci/build/github/wise-app-team/wise-app-fe/main
+[Circle-CI]: https://img.shields.io/circleci/build/github/wise-app-team/wise-app-be/main
 [Circle-url]: https://app.circleci.com/
+
+[PostgreSQL]: https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=white&style=for-the-badge
+[PostgreSQL-url]: https://www.postgresql.org/
+
+[Puma]: https://img.shields.io/badge/-Puma-FFD43B?logo=puma&logoColor=black&style=for-the-badge
+[Puma-url]: https://github.com/puma/puma
+
+[bcrypt]: https://img.shields.io/badge/-bcrypt-00599C?logo=gnu-privacy-guard&logoColor=white&style=for-the-badge
+[bcrypt-url]: https://github.com/codahale/bcrypt-ruby
+
+[Faraday]: https://img.shields.io/badge/-Faraday-3E3E3E?logo=ruby&logoColor=white&style=for-the-badge
+[Faraday-url]: https://github.com/lostisland/faraday
+
+[Figaro]: https://img.shields.io/badge/-Figaro-FF4136?logo=rubygems&logoColor=white&style=for-the-badge
+[Figaro-url]: https://github.com/laserlemon/figaro
+
+[JSON-Serializer]: https://img.shields.io/badge/-JSON%20API%20Serializer-1E90FF?logo=json&logoColor=white&style=for-the-badge
+[JSON-Serializer-url]: https://github.com/jsonapi-serializer/jsonapi-serializer
+
+[Capybara]: https://img.shields.io/badge/-Capybara-FF7F50?logo=rubygems&logoColor=white&style=for-the-badge
+[Capybara-url]: https://github.com/teamcapybara/capybara
+
+[RSpec]: https://img.shields.io/badge/-RSpec-FF7F50?logo=rubygems&logoColor=white&style=for-the-badge
+[RSpec-url]: https://github.com/rspec/rspec
+
+[Faker]: https://img.shields.io/badge/-Faker-FF69B4?logo=rubygems&logoColor=white&style=for-the-badge
+[Faker-url]: https://github.com/faker-ruby/faker
+
+[Shoulda-Matchers]: https://img.shields.io/badge/-Shoulda%20Matchers-5B5B5B?logo=rubygems&logoColor=white&style=for-the-badge
+[Shoulda-Matchers-url]: https://github.com/thoughtbot/shoulda-matchers
