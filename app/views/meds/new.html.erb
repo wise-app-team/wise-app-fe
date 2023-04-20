@@ -1,27 +1,42 @@
-<h1>Add a medication to your list</h1>
-<h2>Name of Medication:<%= @medication_name %></h2>
+<h1 class="text-3xl font-bold mb-4">Add a medication to your list</h1>
+<h2 class="text-xl mb-2">Name of Medication: <%= @medication_name %></h2>
 
-<p><%= form_with url: "/users/#{@user_id}/meds", method: :post, local: :true do |form| %></p>
+<%= form_with url: "/users/#{@user_id}/meds", method: :post, local: :true do |form| %>
   <%= form.hidden_field :rxcui, value: @rxcui %>
 
-  <p><%= form.label :dose1 %></p>
-  <p><%= form.time_field :dose1 %></p>
+  <div class="mb-4">
+    <%= form.label :dose1, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.time_field :dose1, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :dose2 %></p>
-  <p><%= form.time_field :dose2 %></p>
+  <div class="mb-4">
+    <%= form.label :dose2, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.time_field :dose2, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :dose3 %></p>
-  <p><%= form.time_field :dose3 %></p>
+  <div class="mb-4">
+    <%= form.label :dose3, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.time_field :dose3, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.label :prn, "As Needed?" %></p>
-  <p><%= form.radio_button :prn, true  %>
-    <%= form.label :prn_true, "True" %></p>
-  <p><%= form.radio_button :prn, false %>
-   <%= form.label :prn_false, "False" %></p>
-  
+  <div class="mb-4">
+    <%= form.label :prn, "As Needed?", class: "block text-gray-700 font-bold mb-2" %>
+    <label class="inline-flex items-center">
+      <%= form.radio_button :prn, true, class: "form-radio h-5 w-5 text-gray-600" %>
+      <span class="ml-2 text-gray-700">True</span>
+    </label>
+    <label class="inline-flex items-center ml-6">
+      <%= form.radio_button :prn, false, class: "form-radio h-5 w-5 text-gray-600" %>
+      <span class="ml-2 text-gray-700">False</span>
+    </label>
+  </div>
 
-  <p><%= form.label :notes %></p>
-  <p><%= form.text_field :notes %></p>
+  <div class="mb-4">
+    <%= form.label :notes, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :notes, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
 
-  <p><%= form.submit "Submit" %></p>
+  <div class="text-center">
+    <%= form.submit "Submit", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
 <% end %>
