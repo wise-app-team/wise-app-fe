@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     response = BackendFacade.new.user_logging_in(user_params)
     if response.status == 200
       user_id = JSON.parse(response.body, symbolize_names: true)
+      require 'pry'; binding.pry
       redirect_to user_path(user_id[:data][:id].to_i)
     else 
       flash[:error] = "Invalid Credentials"
