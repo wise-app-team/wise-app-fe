@@ -34,7 +34,6 @@ class BackendFacade
   end
 
   def find_user_by_id(user_id)
-    # require 'pry'; binding.pry
     user_data = BackendService.new.find_user_by_id(user_id)[:data]
     UserPoro.new(user_data)
   end

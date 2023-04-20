@@ -124,7 +124,8 @@ RSpec.describe 'Medical Index Page' do
     end
 
     it "I see a list of medications I have searched for" do
-      click_on "Submit"
+      fill_in :search, with: "Tylenol"
+			click_on "Submit"
   
       expect(page).to have_content("Medications Searched")
   

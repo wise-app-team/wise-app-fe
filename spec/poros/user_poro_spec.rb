@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe UserPoro do
   it "exists" do
-    attrs = {
-      id: 1,
+    attrs = {:id=>"1",
+		:type=>"user",
+		:attributes=>
+		{
       name: "Pedro Pascal",
       email: "pedro@pedro.com",
       birthday: "04/05/1975",
@@ -14,12 +16,13 @@ RSpec.describe UserPoro do
       zip_code: "80209",
       token: "12345",
       provider: "google"
-    }
+		}
+	}
 
     user = UserPoro.new(attrs)
 
-    expect(user).to be_a(User)
-    expect(user.id).to eq(1)
+    expect(user).to be_a(UserPoro)
+    expect(user.id).to eq("1")
     expect(user.name).to eq("Pedro Pascal")
     expect(user.email).to eq("pedro@pedro.com")
     expect(user.birthday).to eq("04/05/1975")
