@@ -1,6 +1,5 @@
 class MedsController < ApplicationController
   def index
-    # require 'pry'; binding.pry
     @user_id = params[:user_id]
     @drugs = BackendFacade.new.user_medications(params[:user_id]) # good
     @user_drugs = BackendFacade.new.user_drugs_relations(params[:user_id]) # good
@@ -17,7 +16,6 @@ class MedsController < ApplicationController
     else
       @all_drugs_searched = []
     end
-    # require 'pry'; binding.pry
   end
 
   def edit
