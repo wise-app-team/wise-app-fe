@@ -1,16 +1,35 @@
-<h1><%= @drug.name %> Edit</h1>
-
-<%= form_with url: "/users/#{@user_id}/meds", method: :patch, local: true do |f| %>
-  <p><%= f.label :dose1, "Dose 1" %></p>
-  <p><%= f.text_field :dose1, value: @user_drug.dose1 %></p>
-  <p><%= f.label :dose2, "Dose 2" %></p>
-  <p><%= f.text_field :dose2, value: @user_drug.dose2 %></p>
-  <p><%= f.label :dose3, "Dose 3" %></p>
-  <p><%= f.text_field :dose3, value: @user_drug.dose3 %></p>
-  <p><%= f.label :prn, "As Needed" %></p>
-  <p><%= f.radio_button :prn, true, checked: @user_drug.prn == true %> <%= f.label :prn, "True" %></p>
-  <p><%= f.radio_button :prn, false, checked: @user_drug.prn == false %> <%= f.label :prn, "False" %></p>
-  <p><%= f.label :notes, "Notes" %></p>
-  <p><%= f.text_field :notes, value: @user_drug.notes %></p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <h1 class="text-xl font-bold mb-6"><%= @drug.name %> Edit</h1>
+  <%= form_with url: "/users/#{@user_id}/meds", method: :patch, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :dose1, "Dose 1", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :dose1, value: @user_drug.dose1, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :dose2, "Dose 2", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :dose2, value: @user_drug.dose2, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :dose3, "Dose 3", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :dose3, value: @user_drug.dose3, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :prn, "As Needed", class: "block text-gray-700 font-bold mb-2" %>
+      <div class="mt-2">
+        <%= f.radio_button :prn, true, checked: @user_drug.prn == true, class: "mr-2 leading-tight" %>
+        <%= f.label :prn_true, "True", class: "font-normal" %>
+      </div>
+      <div class="mt-2">
+        <%= f.radio_button :prn, false, checked: @user_drug.prn == false, class: "mr-2 leading-tight" %>
+        <%= f.label :prn_false, "False", class: "font-normal" %>
+      </div>
+    </div>
+    <div class="mb-4">
+      <%= f.label :notes, "Notes", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :notes, value: @user_drug.notes, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="flex items-center justify-between">
+      <%= f.submit "Submit", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+</div>
