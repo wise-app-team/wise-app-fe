@@ -37,4 +37,33 @@ class MedsController < ApplicationController
     BackendFacade.new.delete_user_drug(params[:user_id], params[:id])
     redirect_to "/users/#{params[:user_id]}/meds"
   end
+
+  def create
+    drug_id = BackendFacade.new.find_drug_id_by_rxcui(params[:rxcui])
+    user_drug_params = {
+      :user_id => params[:user_id],
+      :drug_id => drug_id[:data][:id],
+      :dose1 => params[:dose1],
+      :dose2 => params[:dose2],
+      :dose3 => params[:dose3],
+      :prn => params[:prn],
+      :notes => params[:notes]
+    }
+    @user_drug = BackendFacade.new.save_drug_to_user(user_drug_params)
+
+    redirect_to "/users/#{params[:user_id]}/meds"
+  end
+
+  def new
+    # binding.pry
+ 
+    @medication_name = params[:synonym]
+    @rxcui = params[:rxcui].to_s
+    @user_id = params[:user_id]
+  end
+
+  private
+  def meds_params
+    params.permit(:rxcui)
+  end
 end

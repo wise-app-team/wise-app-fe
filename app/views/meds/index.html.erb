@@ -44,7 +44,9 @@
 <div id="meds-searched" class="bg-white shadow rounded-lg p-4 mb-4">
   <% if params[:search] %>
     <% @all_drugs_searched.each do |drug| %>
-        <p class="text-base mb-2"><%= drug.synonym %> <%= link_to "Add", "/users/#{@user_id}/meds", class: "px-2 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-700" %></p>
+      <div id="medication-<%= drug.rxcui %>">
+        <p><%= drug.synonym %> <%= button_to "Add", user_drugs_path(@user_id, rxcui: drug.rxcui, name: drug.name, synonym: drug.synonym), method: :post, class: "px-2 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-700" %></p>
+    </div>
     <% end %>
   <% end%>
 </div>

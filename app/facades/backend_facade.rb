@@ -14,6 +14,20 @@ class BackendFacade
     end
   end
 
+  def save_drug_to_user(user_drug_params)
+    BackendService.new.save_user_drug(user_drug_params)
+  end
+
+  def save_drug_to_DB(drug_params)
+    BackendService.new.save_drug(drug_params)
+    Drug.new(drug_params)
+  end
+
+  def find_drug_id_by_rxcui(rxcui)
+    BackendService.new.find_drug_id_by_rxcui(rxcui)
+  end
+
+
   def find_by_email(email)
     user_data = BackendService.new.find_by_email(email)[:data]
     UserPoro.new(user_data)

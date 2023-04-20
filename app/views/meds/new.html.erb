@@ -1,0 +1,25 @@
+<h1>Add a medication to your list</h1>
+<h2>Name of Medication:<%= @medication_name %></h2>
+
+<p><%= form_with url: "/users/#{@user_id}/meds", method: :post, local: :true do |form| %></p>
+  <%= form.hidden_field :rxcui, value: @rxcui %>
+
+  <p><%= form.label :dose1 %></p>
+  <p><%= form.time_field :dose1 %></p>
+
+  <p><%= form.label :dose2 %></p>
+  <p><%= form.time_field :dose2 %></p>
+
+  <p><%= form.label :dose3 %></p>
+  <p><%= form.time_field :dose3 %></p>
+
+  <p><%= form.label :prn, "As Needed" %></p>
+  <p><%= form.radio_button :prn, true %></p>
+  <p><%= form.radio_button :prn, false %></p>
+  
+
+  <p><%= form.label :notes %></p>
+  <p><%= form.text_field :notes %></p>
+
+  <p><%= form.submit "Submit" %></p>
+<% end %>

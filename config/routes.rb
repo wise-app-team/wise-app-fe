@@ -18,14 +18,15 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: 'sessions#create' 
       #(:provider functions as a placeholder in case we implement another one)
   post "/users/new", to: "users#create"
-      
-  get "/users/:user_id/meds", to: "meds#index"
-  
-  resources :users, only: [:show, :new] do 
-    resources :meds, only: [:index, :edit, :destroy] do
-      resources :search, only: [:index]
-    end
-  end
+
+      resources :users, only: [:show, :new] do 
+        post '/drugs', to: 'drugs#create'
+        get '/meds/new', to: 'meds#new'
+        post '/meds/new', to: 'meds#create'
+        resources :meds, only: [:index, :edit, :destroy, :create] do
+          resources :search, only: [:index]
+        end
+      end
 
   namespace :api do
     namespace :v1 do

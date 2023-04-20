@@ -113,27 +113,6 @@ RSpec.describe 'Medical Index Page' do
       expect(page).to have_link("MyMeds")
     end
 
-    it "can search for a medication" do
-      expect(page).to have_content("Search for Medication to add to list")
-      expect(page).to have_button("Submit")
-
-      fill_in :search, with: "Tylenol"
-      click_on "Submit"
-
-      expect(current_path).to eq("/users/1/meds")
-    end
-
-    it "I see a list of medications I have searched for" do
-      fill_in :search, with: "Tylenol"
-			click_on "Submit"
-  
-      expect(page).to have_content("Medications Searched")
-  
-      within "#meds-searched" do
-        expect(page).to have_content("Tylenol", count: 8)
-      end
-    end
-
     it "I see a list of all medications I am currently taking" do
       expect(page).to have_content("Current Medications")
 
@@ -203,5 +182,93 @@ RSpec.describe 'Medical Index Page' do
         expect(page).to have_content("No interactions found.")
       end
     end
+    it "I see a list of medications I have searched for" do
+      stub_request(:post, "http://localhost:5000/api/v1/drugs").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Content-Type'=>'application/x-www-form-urlencoded',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: "", headers: {})
+          
+         fill_in :search, with: "Tylenol"
+        click_on "Submit"
+    
+         expect(page).to have_content("Medications Searched")
+    
+        within "#meds-searched" do
+          expect(page).to have_content("Tylenol", count: 8)
+          expect(page).to have_link("Add", count: 8)
+        end
+    
+        within "#medication-1243440" do
+          expect(page).to have_link("Add")
+          click_on "Add"
+        end        
+    
+      expect(current_path).to eq("/users/1/meds/new")
+    
+      expect(page).to have_content("Add a medication to your list")
+      expect(page).to have_field(:dose1)
+      expect(page).to have_field(:dose2)
+      expect(page).to have_field(:dose3)
+      expect(page).to have_field(:prn)
+      expect(page).to have_field(:notes)
+    end
+    
+    it 'I can add info to the medication and when I click submit, I am redirected back to my meds page, where I see the new medication added' do
+      data = "{\"data\":{\"id\":\"1\",\"type\":\"drug\"}}"
+    
+      stub_request(:post, "http://localhost:5000/api/v1/drugs").
+      with(
+        headers: {
+       'Accept'=>'*/*',
+       'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       'Content-Type'=>'application/x-www-form-urlencoded',
+       'User-Agent'=>'Faraday v2.7.4'
+        }).to_return(status: 200, body: data.to_json, headers: {})
+        
+        stub_request(:post, "http://localhost:5000/api/v1/user_drugs").
+        with(
+          body: {"dose1"=>"2000-01-01T19:00:00.000Z", "dose2"=>"2056-01-01T20:00:00.000Z", "dose3"=>"2077-01-01T21:00:00.000Z", "drug_id"=>"1", "notes"=>"Take it while holding a frog", "prn"=>"true", "user_id"=>"1"},
+          headers: {
+         'Accept'=>'*/*',
+         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+         'Content-Type'=>'application/x-www-form-urlencoded',
+         'User-Agent'=>'Faraday v2.7.4'
+          }).to_return(status: 200, body: "", headers: {})
+    
+        drug_body = "{\"data\":{\"id\":\"1\",\"type\":\"drug\"}}"
+    
+      stub_request(:get, "http://localhost:5000/api/v1/find_by_rxcui/").
+      with(
+        headers: {
+        'Accept'=>'*/*',
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'User-Agent'=>'Faraday v2.7.4'
+        }).
+      to_return(status: 200, body: drug_body, headers: {})
+        
+      fill_in :search, with: "Tylenol"
+      click_on "Submit"
+    
+      within "#medication-1243440" do
+        click_on "Add"
+      end        
+    
+      expect(current_path).to eq("/users/1/meds/new")
+      fill_in :dose1, with: "2000-01-01T19:00:00.000Z"
+      fill_in :dose2, with: "2056-01-01T20:00:00.000Z"
+      fill_in :dose3, with: "2077-01-01T21:00:00.000Z"
+      choose :prn_true
+      fill_in :notes, with: "Take it while holding a frog"
+      
+      click_on 'Submit'
+    
+      expect(current_path).to eq("/users/1/meds")
+    end
   end
 end
+

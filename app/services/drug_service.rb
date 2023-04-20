@@ -6,12 +6,16 @@ class DrugService
 
   def interactions_list(rxcui_list)
     response = conn.get("interaction/list.json?rxcuis=#{rxcui_list}") #rxcui_list is a string of rxcui's separated by '+' signs
-    if response.body == ""
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    if response.body == "" || !parsed.keys.include?(:fullInteractionTypeGroup)
       parsed = "No interactions found."
     else
-      parsed = JSON.parse(response.body, symbolize_names: true)
+      parsed
     end
   end
+
 
   private
 
