@@ -25,6 +25,15 @@ RSpec.describe 'Login Page', type: :feature do
               'User-Agent'=>'Faraday v2.7.4'
         }).to_return(status: 200, body: user_info, headers: {})
 
+        stub_request(:get, "http://localhost:5000/api/v1/users/1").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+           }).
+         to_return(status: 200, body: user_info, headers: {})
+
       fill_in :email, with: 'john@john.com'
       fill_in :password, with: 'password'
       

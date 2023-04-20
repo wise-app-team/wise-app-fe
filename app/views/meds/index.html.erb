@@ -3,13 +3,13 @@
 <h1>Medical Index Page</h1>
 
 <%= link_to "Dashboard", "/dashboard" %>
-<%= link_to "MyMeds", "/users/1/meds" %>
+<%= link_to "MyMeds", "/users/#{@user_id}/meds" %>
 
 <div class="flex justify-between items-center bg-gray-100 py-4 px-8">
   <h1 class="text-2xl font-bold">MyMeds</h1>
   <div>
     <%= link_to 'Dashboard', dashboard_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
-    <%= link_to 'MyMeds', "/users/1/meds", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= link_to 'MyMeds', "/users/#{@user_id}/meds", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 </div>
 
@@ -25,14 +25,14 @@
         <p>Dose 3: <%= user_drug.dose3 %></p>
         <p>As Needed: <%= user_drug.prn %></p>
         <p>Notes: <%= user_drug.notes %></p>
-        <p><%= link_to "Edit", "/users/1/meds/#{drug.id}/edit" %></p>
-        <p><%= link_to "Delete", "/users/1/meds/#{user_drug.id}", method: :delete %></p>
+        <p><%= link_to "Edit", "/users/#{@user_id}/meds/#{drug.id}/edit" %></p>
+        <p><%= link_to "Delete", "/users/#{@user_id}/meds/#{user_drug.id}", method: :delete %></p>
       <% end %>
     <% end %>
   </div>
 <% end %>
 
-<%= form_with url: "/users/1/meds", method: :get, local: true do |f| %>
+<%= form_with url: "/users/#{@user_id}/meds", method: :get, local: true do |f| %>
   <p><%= f.label :search, "Search for Medication to add to list" %></p>
   <p><%= f.text_field :search, value: params[:search] %></p>
   <p><%= f.submit "Submit" %></p>
@@ -42,7 +42,7 @@
 <div id="meds-searched">
   <% if params[:search] %>
     <% @all_drugs_searched.each do |drug| %>
-        <p><%= drug.synonym %> <%= link_to "Add", "/users/1/meds" %></p>
+        <p><%= drug.synonym %> <%= link_to "Add", "/users/#{@user_id}/meds" %></p>
     <% end %>
   <% end%>
 </div>

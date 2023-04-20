@@ -8,10 +8,12 @@ class UserPoro
               :state,
               :zip_code,
               :token,
-              :provider
+              :provider,
+              :id
 
   def initialize(data)
     # binding.pry
+    @id = data[:id]
     @name = data[:attributes][:name]
     @email = data[:attributes][:email]
     @birthday = data[:attributes][:birthday]

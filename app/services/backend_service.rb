@@ -56,4 +56,9 @@ class BackendService
     # binding.pry
     JSON.parse(response.body, symbolize_names: true)
   end
+
+  def find_user_by_id(user_id)
+    response = conn.get("/api/v1/users/#{user_id}")
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end
