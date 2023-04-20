@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
-    # @user = User.find_by(google_id: session[:])
+    # require 'pry'; binding.pry
+    @user = BackendFacade.new.user_info(params[:id])
+    # require 'pry'; binding.pry
   end
 
   def new

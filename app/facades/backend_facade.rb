@@ -1,5 +1,6 @@
 class BackendFacade
   def user_medications(user_id)
+    # require 'pry'; binding.pry
     medication_data = BackendService.new.user_info(user_id)[:data][:attributes][:drugs]
     medications = medication_data.map do |medication|
       Drug.new(medication)
@@ -30,5 +31,10 @@ class BackendFacade
 
   def user_logging_in(user_params)
     user = BackendService.new.login_user(user_params)
+  end
+
+  def user_info(user_id)
+    user_data = BackendService.new.user_info(user_id)
+    # require 'pry'; binding.pry
   end
 end

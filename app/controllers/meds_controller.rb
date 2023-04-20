@@ -1,11 +1,15 @@
 class MedsController < ApplicationController
   def index
     @user_id = params[:user_id]
-    @all_drugs_searched = DrugsFacade.new.search_results(params[:search])
     @drugs = BackendFacade.new.user_medications(params[:user_id])
     @user_drugs = BackendFacade.new.user_drugs_relations(params[:user_id])
-    @drug_search_results = DrugsFacade.new.search_results(params[:search])
     @interactions = DrugsFacade.new.interactions_list(@drugs.map(&:rxcui).join('+'))
+    if params[:search].present?
+      @all_drugs_searched = DrugsFacade.new.search_results(params[:search])
+    else
+      @all_drugs_searched = []
+    end
+    # require 'pry'; binding.pry
   end
 
   def edit

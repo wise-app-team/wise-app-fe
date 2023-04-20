@@ -28,6 +28,7 @@ class BackendService
 
   def user_info(user_id)
     response = conn.get("/api/v1/users/#{user_id}")
+    # require 'pry'; binding.pry
     JSON.parse(response.body, symbolize_names: true)
   end
  
