@@ -17,6 +17,7 @@ class BackendService
   end
 
   def login_user(user_params)
+    # require 'pry'; binding.pry
     response = conn.post('/api/v1/users/login') do |req|
       req.body = user_params
     end
@@ -53,8 +54,7 @@ class BackendService
     # On the backend, there should be a route => get "/api/v1/users/:email". 
     # This should return the user by their email
     response = conn.get("/api/v1/users/#{email}")
-    # binding.pry
-    JSON.parse(response.body, symbolize_names: true)
+		JSON.parse(response.body, symbolize_names: true)
   end
 
   def find_user_by_id(user_id)

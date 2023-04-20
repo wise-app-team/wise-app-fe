@@ -13,6 +13,7 @@ class UserPoro
 
   def initialize(data)
     # binding.pry
+    # data is returning a hash with id and type
     @id = data[:id]
     @name = data[:attributes][:name]
     @email = data[:attributes][:email]
