@@ -1,59 +1,61 @@
-<h1>WiseApp</h1>
-
-<h1>Medical Index Page</h1>
-
-<%= link_to "Dashboard", "/dashboard" %>
-<%= link_to "MyMeds", "/users/#{@user_id}/meds" %>
-
 <div class="flex justify-between items-center bg-gray-100 py-4 px-8">
-  <h1 class="text-2xl font-bold">MyMeds</h1>
+  <h1 class="text-2xl font-bold">WiseApp</h1>
   <div>
     <%= link_to 'Dashboard', dashboard_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" %>
     <%= link_to 'MyMeds', "/users/#{@user_id}/meds", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 </div>
 
-<h3>Current Medications</h3>
-
-<% @drugs.each do |drug| %>
-  <div id="medication-<%= drug.id %>">
-    <p>Name: <%= drug.name %></p>
-    <% @user_drugs.each do |user_drug| %>
-      <% if user_drug.drug_id == drug.id %>
-        <p>Dose 1: <%= user_drug.dose1 %></p>
-        <p>Dose 2: <%= user_drug.dose2 %></p>
-        <p>Dose 3: <%= user_drug.dose3 %></p>
-        <p>As Needed: <%= user_drug.prn %></p>
-        <p>Notes: <%= user_drug.notes %></p>
-        <p><%= link_to "Edit", "/users/#{@user_id}/meds/#{drug.id}/edit" %></p>
-        <p><%= link_to "Delete", "/users/#{@user_id}/meds/#{user_drug.id}", method: :delete %></p>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <h3 class="text-lg font-bold mb-4">Current Medications</h3>
+  <% @drugs.each do |drug| %>
+    <div id="medication-<%= drug.id %>" class="bg-white shadow rounded-lg p-4 mb-4">
+      <p class="text-lg font-semibold mb-2">Name: <%= drug.name %></p>
+      <% @user_drugs.each do |user_drug| %>
+        <% if user_drug.drug_id == drug.id %>
+          <p class="text-base mb-1">Dose 1: <%= user_drug.dose1 %></p>
+          <p class="text-base mb-1">Dose 2: <%= user_drug.dose2 %></p>
+          <p class="text-base mb-1">Dose 3: <%= user_drug.dose3 %></p>
+          <p class="text-base mb-1">As Needed: <%= user_drug.prn %></p>
+          <p class="text-base mb-1">Notes: <%= user_drug.notes %></p>
+          <p class="text-sm">
+            <%= link_to "Edit", "/users/#{@user_id}/meds/#{drug.id}/edit", class: "mr-2 text-blue-500 hover:text-blue-700" %>
+            <%= link_to "Delete", "/users/#{@user_id}/meds/#{user_drug.id}", method: :delete, class: "text-red-500 hover:text-red-700" %>
+          </p>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-<% end %>
+    </div>
+  <% end %>
 
-<%= form_with url: "/users/#{@user_id}/meds", method: :get, local: true do |f| %>
-  <p><%= f.label :search, "Search for Medication to add to list" %></p>
-  <p><%= f.text_field :search, value: params[:search] %></p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+<div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-6">
+  <%= form_with url: "/users/#{@user_id}/meds", method: :get, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :search, "Search for Medication to add to list", class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :search, value: params[:search], class: "form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm" %>
+    </div>
+    <div class="text-center">
+      <%= f.submit "Submit", class: "py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75" %>
+    </div>
+  <% end %>
+</div>
 
-<h3>Medications Searched</h3>
-<div id="meds-searched">
+
+<h3 class="text-lg font-bold mb-4">Medications Searched</h3>
+<div id="meds-searched" class="bg-white shadow rounded-lg p-4 mb-4">
   <% if params[:search] %>
     <% @all_drugs_searched.each do |drug| %>
       <div id="medication-<%= drug.rxcui %>">
-        <p><%= drug.synonym %> <%= button_to "Add", user_drugs_path(@user_id, rxcui: drug.rxcui, name: drug.name, synonym: drug.synonym), method: :post %></p>
+        <p><%= drug.synonym %> <%= button_to "Add", user_drugs_path(@user_id, rxcui: drug.rxcui, name: drug.name, synonym: drug.synonym), method: :post, class: "px-2 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-700" %></p>
     </div>
     <% end %>
   <% end%>
 </div>
 
-<h3>Interactions:</h3>
-<div id="interactions">
+<h3 class="text-lg font-bold mb-4">Interactions:</h3>
+<div id="interactions" class="bg-white shadow rounded-lg p-4 mb-4">
   <ul>
     <% @interactions.each do |interaction| %>
-      <li><p><%= interaction.description %></p></li>
+      <li class="text-base mb-2"><p><%= interaction.description %></p></li>
     <% end %>
   </ul>
 </div>
