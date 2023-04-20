@@ -326,6 +326,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webmock
+  zeitwerk
 
 RUBY VERSION
    ruby 3.1.1p18
