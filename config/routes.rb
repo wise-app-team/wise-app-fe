@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'landing#index'
   get '/login', to: 'users#login'
-  post '/login', to: 'users#login_user'
+  # post '/login', to: 'users#login_user'
 
   get '/dashboard', to: 'users#show'
   

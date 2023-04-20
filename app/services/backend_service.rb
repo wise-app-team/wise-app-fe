@@ -28,7 +28,6 @@ class BackendService
 
   def user_info(user_id)
     response = conn.get("/api/v1/users/#{user_id}")
-    # require 'pry'; binding.pry
     JSON.parse(response.body, symbolize_names: true)
   end
  
@@ -55,6 +54,11 @@ class BackendService
     # This should return the user by their email
     response = conn.get("/api/v1/users/#{email}")
     # binding.pry
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def find_user_by_id(user_id)
+    response = conn.get("/api/v1/users/#{user_id}")
     JSON.parse(response.body, symbolize_names: true)
   end
 end

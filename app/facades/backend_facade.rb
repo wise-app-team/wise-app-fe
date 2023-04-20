@@ -33,8 +33,8 @@ class BackendFacade
     user = BackendService.new.login_user(user_params)
   end
 
-  def user_info(user_id)
-    user_data = BackendService.new.user_info(user_id)
-    # require 'pry'; binding.pry
+  def find_user_by_id(user_id)
+    user_data = BackendService.new.find_user_by_id(user_id)[:data]
+    UserPoro.new(user_data)
   end
 end
