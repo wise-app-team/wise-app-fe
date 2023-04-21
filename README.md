@@ -72,6 +72,9 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#project-manager">Project Manager</a></li>
+    <li><a href="#gems">Gems</a></li>
+    <li><a href="#issues">Known Issues</a></li>
   </ol>
 </details>
 
@@ -81,7 +84,7 @@
 ## About The Project
 
 
-Wise App is a web app seeking to solve a modern problem with a modern solution. As of 2019, Americans aged 65 or older take an average of four medications [^1]. Between insurance, specialties, and provider availability, not all medications are managed by the same providers, and that's where Wise App comes in.
+Wise App is a web app seeking to solve a modern problem with a modern solution. As of 2019, Americans aged 65 or older take an average of four medications [1](https://www.kff.org/health-reform/issue-brief/data-note-prescription-drugs-and-older-adults/). Between insurance, specialties, and provider availability, not all medications are managed by the same providers, and that's where Wise App comes in.
 
 WiseApp is an application that helps users manage their medication intake by providing features such as medication search, reminders, and interaction checking. Users can register through the site or use Google to log in through OmniAuth. Once logged in, they can search for their medications and add them to their profile. The application allows users to set reminders for when to take each medication and receive email or text notifications. They can also view any potential interactions that the medications have.
 
@@ -102,7 +105,7 @@ Additionally, the project uses several gems for development and testing, such as
 
 Stretch goals include adding a social aspect to help users find events in their local area.
 
-[^1](https://www.kff.org/health-reform/issue-brief/data-note-prescription-drugs-and-older-adults/) 
+[1](https://www.kff.org/health-reform/issue-brief/data-note-prescription-drugs-and-older-adults/) 
 
 This is the front end repo, the back end repo is located [here](https://github.com/wise-app-team/wise-app-be)
 
@@ -191,6 +194,18 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ISSUES -->
+## Known Issues
+
+Oauth is not currently working. There was a point in the project where it was functional, but at this time it is not. If it were working properly, users would be able to login with google or by creating an account, as it stands users are able to create an account but logging in with google does not create a new user.
+
+The error arises in user_poro.rb where `data` is being passed as a blank array. 
+
+![error](/images/oauth-error.png)
+![poro](/images/user-poro.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTACT -->
 ## Contact
 
@@ -241,7 +256,7 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- PROJECT MANAGER -->
+<!-- PROJECT-MANAGER -->
 ## Project Manager
 
 * Abdul Redd
