@@ -72,6 +72,9 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#project-manager">Project Manager</a></li>
+    <li><a href="#gems">Gems</a></li>
+    <li><a href="#issues">Known Issues</a></li>
   </ol>
 </details>
 
@@ -191,6 +194,18 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ISSUES -->
+## Known Issues
+
+Oauth is not currently working. There was a point in the project where it was functional, but at this time it is not.
+
+The error arises in user_poro.rb where `data` is being passed as a blank array. 
+
+![error](/images/oauth-error.png)
+![poro](/images/user-poro.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTACT -->
 ## Contact
 
@@ -241,7 +256,7 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- PROJECT MANAGER -->
+<!-- PROJECT-MANAGER -->
 ## Project Manager
 
 * Abdul Redd
